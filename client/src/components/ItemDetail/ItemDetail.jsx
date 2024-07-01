@@ -3,11 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Image, Badge, Button,ButtonGroup } from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import { CartContext } from "../../context/CartContext.jsx"; // Importar el CartContext
 
 const ItemDetail = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
-  const { cartItems, addToCart } = useContext(CartContext); // Consumir el CartContext
   
   
   return (
@@ -31,20 +29,6 @@ const ItemDetail = ({ product }) => {
           </Badge>
         </div>
         <Row className="d-flex justify-content-between">
-          
-          <Col >
-            <ButtonGroup>
-              <Button variant="outline-primary" onClick={() => quantity > 1 ? setQuantity(quantity - 1) : null}>-</Button>
-              <span  className="p-2 mx-2 border border-primary">{quantity}</span>
-              <Button variant="outline-primary" onClick={() => setQuantity(quantity + 1)}>+</Button>
-            </ButtonGroup>
-          </Col>
-          <Col >
-            <Button variant="outline-primary" onClick={() => addToCart(product, quantity)}>Añadir al carrito</Button>
-          </Col>
-          <Col >
-            <h2 className="text-end fw-light">${product.price.toFixed(2)}</h2>
-          </Col>
         </Row>
       </div>
     </Col>

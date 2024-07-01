@@ -3,123 +3,96 @@ import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Face.css';
 import ItemListContainer from '../ItemListContainer/ItemListContainer.jsx';
+import { Typography } from '@mui/material';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import { styled } from '@mui/system';
+import Calculadora from '../Calculadora/Calculadora.jsx';
+
+const BackgroundHeader = styled('header')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundImage: 'url(./img/fondo.webp)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  width: '100%',
+  padding: '50px 0'
+});
 
 const Face = () => {
   return (
     <div>
-      {/* Sección Hero */}
-      <div className="hero d-flex align-items-center justify-content-center flex-column">
-        <div className="overlay w-100 d-flex align-items-center justify-content-center flex-column">
-        <h1 className="display-3 text-white">Bienvenido a Mi Tienda de Ropa</h1>
-        <p className="lead text-light">La moda que buscas, en un solo lugar.</p>
+      
 
-        <Link to="/products/real">
-          <Button variant="outline-light" size="lg">Explora Nuestros Productos</Button>
-        </Link>
-</div>
-      </div>
-
-      {/* Sección de Categorías Destacadas */}
-      <Container className="my-5">
-        <h2 className="text-center mb-4">Categorías Destacadas</h2>
-        <Row>
-          <Col md={4} className="mb-3">
-            <Card className="h-100 bg-dark text-white" >
-              <Card.Img variant="top" src="https://st2.depositphotos.com/1010550/8116/i/450/depositphotos_81167544-stock-photo-handsome-skater-boy-using-his.jpg" />
-              <Card.Body>
-                <Card.Title>Hombres</Card.Title>
-                <Card.Text>Explora las últimas tendencias para hombres.</Card.Text>
-                <Link to="/category/men">
-                  <Button variant="primary">Ver Más</Button>
-                </Link>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4} className="mb-3">
-            <Card className="h-100 bg-dark text-white" >
-              <Card.Img variant="top" src="https://deportesriesgo.com/wp-content/uploads/Mejor-ropa-de-skate.jpg" />
-              <Card.Body>
-                <Card.Title>Mujeres</Card.Title>
-                <Card.Text>Descubre la moda femenina para toda ocasión.</Card.Text>
-                <Link to="/category/women">
-                  <Button variant="primary">Ver Más</Button>
-                </Link>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4} className="mb-3">
-            <Card className="h-100 bg-dark text-white" >
-              <Card.Img variant="top" src="https://growoldbcn.com/cdn/shop/articles/skate.jpg?v=1589962181" />
-              <Card.Body>
-                <Card.Title>Accesorios</Card.Title>
-                <Card.Text>Complementa tu estilo con los mejores accesorios.</Card.Text>
-                <Link to="/category/accessories">
-                  <Button variant="primary">Ver Más</Button>
-                </Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-
-      {/* Mejoras en la Sección de Productos Populares */}
-      <Container className="my-5 popular-products-section">
-  <h2 className="text-center mb-4 section-title">Productos Populares</h2>
-  <ItemListContainer />
-</Container>
-
-{/* Mejoras en la Sección de Suscripción */}
-<div className="subscription-section text-center p-5">
-  <div className="subscription-content">
-    <h2 className="subscription-title">Únete a Nuestro Boletín</h2>
-    <p>Recibe las últimas noticias y ofertas exclusivas.</p>
-    <form className="subscription-form">
-      <input type="email" placeholder="Tu correo electrónico" />
-      <Button variant="primary" size="lg">Suscribirse</Button>
-    </form>
-  </div>
-</div>
-<div className="testimonials-section text-center my-5">
-  <Container>
-    <h2 className="mb-4">Lo Que Dicen Nuestros Clientes</h2>
-    <Row>
-      <Col md={4}>
-        <div className="testimonial">
-          <p className="testimonial-text">"¡La mejor tienda de ropa! Siempre encuentro lo que busco y más."</p>
-          <p className="testimonial-author">- Alex M.</p>
+      <header className="d-flex justify-content-around align-items-center">
+        <img src="./img/fondo.webp" alt="Fondo" className="bg-image" />
+        <div >
+          <h1 className="display-4">La Plata pa' Venezuela</h1>
+          <p className="lead">Tu solución confiable para enviar dinero a Venezuela.</p>
+          <a href="#contacto" className="btn btn-primary w-50 d-flex justify-content-around" ><img src="./img/whatsapp-AwvrBaRrObFNPLxM.avif" className='img-boton' alt="" /> Enviar</a>
+          <a href="#contacto" className="btn btn-primary w-50 d-flex justify-content-around mt-2" ><img src="./img/instagram-icon-YrDaMZ7O21hPKk33.avif" className='img-boton' alt="" /> Sigenos</a>
         </div>
-      </Col>
-      <Col md={4}>
-        <div className="testimonial">
-          <p className="testimonial-text">"Increíble calidad y excelente servicio al cliente. ¡Muy recomendado!"</p>
-          <p className="testimonial-author">- Daniela R.</p>
+        <div >
+          <img src="./img/LAPLATAPAVENEZUELA.png" alt="Venezuela" className="img-fluid rounded-circle" style={{ maxWidth: '200px' }} />
         </div>
-      </Col>
-      <Col md={4}>
-        <div className="testimonial">
-          <p className="testimonial-text">"Variedad y estilo en un solo lugar. Siempre me sorprenden con sus colecciones."</p>
-          <p className="testimonial-author">- Carlos S.</p>
-        </div>
-      </Col>
-    </Row>
-  </Container>
-</div>
+      </header>
 
-<footer className="footer bg-dark text-light text-center p-3">
-  <Container>
-    <Row>
-      <Col>
-        <p>© 2023 Mi Tienda de Ropa</p>
-      </Col>
-      <Col>
-        <Link to="/privacy-policy" className="text-light">Política de Privacidad</Link>
-      </Col>
-      <Col>
-        <Link to="/contact" className="text-light">Contacto</Link>
-      </Col>
-    </Row>
-  </Container>
-</footer>
+      <main>
+        <section id="quienes-somos" className="quienes-somos-section">
+          <div className="container">
+            <h2 className="section-title">Quiénes Somos</h2>
+            <div className="row">
+              <div className="col-md-6">
+                <img src="./img/quienes-somos.jpg" alt="Sobre Nosotros" className="img-fluid rounded" />
+              </div>
+              <div className="col-md-6">
+                <p className="section-description">Somos una empresa dedicada a facilitar el envío de remesas a Venezuela, ofreciendo un servicio confiable, rápido y seguro. Nuestro compromiso es brindar la mejor experiencia a nuestros clientes, asegurando que su dinero llegue a su destino de manera eficiente.</p>
+                <a href="#contacto" className="btn btn-primary"><img src="./img/whatsapp-AwvrBaRrObFNPLxM.avif" className="" alt="" /> Contáctanos</a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="servicios" className="servicios-section ">
+          <div className="container">
+            <h2 className="section-title text-center text-white">Nuestros Servicios</h2>
+            <div className="row">
+              <div className="col text-white">
+                <div className="service-card card">
+                  <img src="./img/Cambio de Divisas.webp" className="card-img-top" alt="..." />
+                  <div className="card-body ">
+                    <h3 className="text-white">Envío de Remesas</h3>
+                    <p className="text-white">Facilitamos el envío de remesas a Venezuela con rapidez y seguridad.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="service-card card">
+                  <img src="./img/envio de remesas.webp" className="card-img-top" alt="..." />
+                  <div className="card-body">
+                    <h3 className="text-white">Cambio de Divisas</h3>
+                    <p className="text-white">Ofrecemos el mejor tipo de cambio para tus operaciones en diferentes divisas.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <ItemListContainer/>
+        <Calculadora/>
+      </main>
+
+      <footer className="footer p-3">
+        <p>Derechos reservados © 2023 La Plata pa' Venezuela</p>
+        <Link to="/user/login">admin</Link>
+      </footer>
+
+      
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+      
     </div>
   );
 };

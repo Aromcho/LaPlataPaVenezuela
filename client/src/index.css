@@ -1,67 +1,223 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.header, .footer { background-color: #004d99; color: white; }
+/* Nuevos estilos */
+.navbar, .btn, .footer {
+    background-color: #0033AB; /* Azul */
+    color: #F7D117; /* Amarillo */
+}
+.navbar .nav-link, .footer a {
+    color: #F7D117; /* Amarillo */
+    transition: transform 0.5s ease, color 0.5s ease; /* Transición suave para el hover */
+}
+.btn:hover {
+    background-color: #CF142B; /* Rojo */
+    color: white;
+}
+.navbar-collapse {
+    justify-content: around; /* Distribuye los elementos de manera equitativa */
+}
+.navbar .nav-link:hover {
+    transform: scale(1.1); /* Efecto de agrandamiento */
+    color: #ffffff; /* Cambio de color al blanco */
+}
+.capa {
+    background-color: #000000c2;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+header {
+    position: relative;
+    overflow: hidden;
+    height: 50vh;
+    color: white;
 }
 
-body {
-  margin: 0;
-
-    max-width: 100vw;
-  min-height: 100vh;
-  
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Asegura que la imagen cubra todo el ancho */
+    height: 100%; /* Asegura que la imagen cubra todo el alto */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    z-index: -1; /* Coloca la imagen detrás del contenido */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Capa oscura, ajusta la opacidad según necesites */
+    z-index: 1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Elimina el desenfoque del header para evitar afectar todo el contenido */
+/* header {
+    filter: blur(8px);
+} */
+
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./img/fondo.webp');
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px); /* Aplica el desenfoque solo aquí */
+    z-index: -1; /* Asegúrate de que esté detrás del contenido */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+header > * {
+    position: relative;
+    z-index: 2; /* Asegura que el contenido esté por encima de la capa oscura y el fondo desenfocado */
 }
+
+/* Mejoras generales para el navbar */
+.navbar {
+    background-color: #0033AB; /* Azul más oscuro para mejor contraste */
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Sombra sutil para dar profundidad */
+}
+
+.navbar-brand, .nav-link {
+    transition: color 0.3s ease; /* Transición suave para los cambios de color */
+}
+
+.navbar .nav-link {
+    transition: transform 0.5s ease, color 0.5s ease;
+}
+
+.navbar .nav-link:hover {
+    transform: scale(1.1); /* Aumenta el tamaño del link */
+    color: #ffffff; /* Cambia el color al blanco para el hover */
+}
+
+/* Estilo para el botón del navbar en dispositivos móviles */
+.navbar-toggler {
+    border-color: #F7D117; /* Borde amarillo para el botón */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='%23F7D117' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>"); /* Icono personalizado para el botón */
+}
+.navbar-collapse {
+    justify-content: around;
+}
+
+.quienes-somos-section {
+    background-color: #f8f9fa; /* Fondo claro para la sección */
+    padding: 60px 0; /* Espaciado superior e inferior */
+}
+
+.section-title {
+    color: #0033AB; /* Color del título acorde al navbar */
+    text-align: center; /* Centrar el título */
+    margin-bottom: 30px; /* Espaciado después del título */
+}
+
+.section-description {
+    color: #333; /* Color oscuro para el texto, mejora la legibilidad */
+    line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
+}
+
+.btn-primary {
+    background-color: #F7D117; /* Botón que sigue el esquema de colores */
+    color: #0033AB;
+    border: none; /* Elimina el borde del botón */
+}
+
+.btn-primary:hover {
+    background-color: #0033AB; /* Cambio de color al pasar el mouse */
+    color: #ffffff;
+}
+.servicios-section {
+    padding: 60px 0;
+    background-color: #fd4d62; /* Fondo claro para contraste */
+
+}
+
+.section-title {
+    color: #0033AB; /* Color del título acorde al navbar */
+    margin-bottom: 50px; /* Espaciado después del título */
+    text-align: center; /* Centrar el título */
+}
+
+.service-card {
+    background-color: #ffffff; /* Fondo blanco para las tarjetas */
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
+    text-align: center; /* Texto centrado */
+}
+
+.service-card img {
+    margin-bottom: 20px; /* Espaciado debajo de la imagen */
+}
+
+.service-card h3 {
+    color: #0033AB; /* Color del título del servicio */
+}
+
+.service-card p {
+    color: #666; /* Color del texto para mejorar legibilidad */
+}
+
+.paises-monedas-section {
+    background-image: url('./img/LAPLATAPAVENEZUELA.png'); /* Cambia por tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    
+    color: #fff; /* Cambia el color del texto a blanco para mejor contraste */
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro y semi-transparente */
+    backdrop-filter: blur(8px); /* Efecto borroso para el fondo de la tarjeta */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde blanco semi-transparente */
+}
+
+.card-img-top {
+    height: 200px; /* Ajusta según necesidad */
+    object-fit: cover; /* Asegura que la imagen cubra bien el espacio sin deformarse */
+}
+.calculadora-section {
+    background-color: #f8f9fa; /* Fondo claro para la sección */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 40px; /* Más espacio interior */
+}
+
+.section-title {
+    color: #333; /* Color de texto oscuro para mejor contraste */
+    margin-bottom: 30px; /* Espaciado debajo del título */
+    text-align: center; /* Centrar el título */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Espaciado entre campos del formulario */
+}
+
+.form-control {
+    border-radius: 20px; /* Bordes redondeados para los campos de entrada y selección */
+    border: 1px solid #ced4da; /* Borde sutil */
+    padding: 10px 15px; /* Más espacio interior */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Color principal */
+    border: none; /* Sin borde */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 10px 30px; /* Más espacio interior */
+    font-weight: bold; /* Texto en negrita */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Color al pasar el ratón */
+}
+ .img-boton {
+  width: 25px;
+ }

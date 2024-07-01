@@ -1,5 +1,10 @@
-.card-shadow { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-.img-rounded { border-radius: 5px; }
-.card-title-bold { font-size: 1.25rem; font-weight: bold; }
-.card-text { font-size: 1rem; }
-.price-text { font-size: 1rem; color: #007bff; }
+
+.card {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro y semi-transparente */
+    backdrop-filter: blur(8px); /* Efecto borroso para el fondo de la tarjeta */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde blanco semi-transparente */
+}
+.card-img-top {
+    height: 200px; /* Ajusta según necesidad */
+    object-fit: cover; /* Asegura que la imagen cubra bien el espacio sin deformarse */
+}
