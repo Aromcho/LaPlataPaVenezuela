@@ -1,21 +1,24 @@
 import { Schema, model } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 
-const collection = "products"
-const schema = new Schema ({
-    title: { type:String, require:true },
-    photo: { type:String, require:true },
-    category: { type:String, require:true },
-    price: { type:Number, require:true },
-    stock: { type:Number, require:true }
-},{
-    timestamps: true
-})
+const tasaSchema = new Schema({
+  monedaDestino: { type: String, required: true },
+  tasa: { type: Number, required: true },
+}, { _id: true });
+
+const productSchema = new Schema({
+  imagen: { type: String, required: true },
+  nombre: { type: String, required: true },
+  moneda: { type: String, required: true },
+  tasas: [tasaSchema],
+}, {
+  timestamps: true
+});
 
 // Aplicamos el plugin de paginación al esquema
-schema.plugin(mongoosePaginate)
+productSchema.plugin(mongoosePaginate);
 
 // Creamos el modelo de producto con el esquema definido
-const Product = model(collection, schema)
+const Product = model("products", productSchema);
 
-export default Product
+export default Product;
