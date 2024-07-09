@@ -8,6 +8,9 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { styled } from '@mui/system';
 import Calculadora from '../Calculadora/Calculadora.jsx';
+import Testimonials from '../Testimonials/Testimonials.jsx';
+import { Image } from 'react-bootstrap-icons';
+import ContactForm from '../ContactForm/ContactForm.jsx';
 
 const BackgroundHeader = styled('header')({
   display: 'flex',
@@ -46,33 +49,35 @@ const Face = () => {
               <div className="col-md-6">
                 <img src="./img/quienes-somos.jpg" alt="Sobre Nosotros" className="img-fluid rounded" />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6 ">
                 <p className="section-description">Somos una empresa dedicada a facilitar el envío de remesas a Venezuela, ofreciendo un servicio confiable, rápido y seguro. Nuestro compromiso es brindar la mejor experiencia a nuestros clientes, asegurando que su dinero llegue a su destino de manera eficiente.</p>
                 <a href="#contacto" className="btn btn-primary"><img src="./img/whatsapp-AwvrBaRrObFNPLxM.avif" className="" alt="" /> Contáctanos</a>
               </div>
             </div>
           </div>
         </section>
-        <section id="servicios" className="servicios-section ">
+        <section id="servicios" className="servicios-section">
+          <div className=' w-100 d-flex justify-content-center mt-5'><img src="./img/E-Wallet-pana.png" className=' img-blue w-25 '/></div>
           <div className="container">
             <h2 className="section-title text-center text-white">Nuestros Servicios</h2>
-            <div className="row">
-              <div className="col text-white">
-                <div className="service-card card">
+            <div className="col">
+              <div className="row text-white mt-5">
+                <div className="container d-flex align-items-center">
                   <img src="./img/Cambio de Divisas.webp" className="card-img-top" alt="..." />
-                  <div className="card-body ">
+                  <div className="card-body card-sobre-derecha">
                     <h3 className="text-white">Envío de Remesas</h3>
                     <p className="text-white">Facilitamos el envío de remesas a Venezuela con rapidez y seguridad.</p>
                   </div>
                 </div>
               </div>
-              <div className="col">
-                <div className="service-card card">
-                  <img src="./img/envio de remesas.webp" className="card-img-top" alt="..." />
-                  <div className="card-body">
+              <div className="row mt-5">
+                <div className="container d-flex align-items-center">
+                  <div className="card-body card-sobre-izquierda">
                     <h3 className="text-white">Cambio de Divisas</h3>
                     <p className="text-white">Ofrecemos el mejor tipo de cambio para tus operaciones en diferentes divisas.</p>
                   </div>
+                  <img src="./img/envio de remesas.webp" className="card-img-top" alt="..." />
+
                 </div>
               </div>
             </div>
@@ -80,6 +85,8 @@ const Face = () => {
         </section>
         <ItemListContainer/>
         <Calculadora/>
+        <Testimonials/>
+        <ContactForm/>
       </main>
 
       <footer className="footer p-3">

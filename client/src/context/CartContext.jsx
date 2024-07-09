@@ -40,11 +40,20 @@ const Provider = ({ children }) => {
       console.error("Error al obtener los productos", error);
     }
   };
+  const adminAction = () => {
+    if (isAdmin) {
+      console.log("Acción especial del administrador");
+      // Aquí puedes poner cualquier lógica o función especial para los administradores
+    } else {
+      console.log("Acceso denegado. Solo los administradores pueden realizar esta acción.");
+    }
+  };
 
   return (
     <Context.Provider
       value={{
         isAdmin,
+        adminAction, // Exponer la acción especial del administrador
       }}
     >
       {children}

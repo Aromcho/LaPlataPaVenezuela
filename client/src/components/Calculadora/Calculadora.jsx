@@ -71,6 +71,7 @@ const Calculadora = () => {
                             >
                                 <option value="USD">Dólar (USD)</option>
                                 <option value="EUR">Euro (EUR)</option>
+                                <option value="Bs">Bolivares (Bs)</option>
                                 <option value="COP">Peso Colombiano (COP)</option>
                                 <option value="ARS">Peso Argentino (ARS)</option>
                                 <option value="BRL">Real Brasileño (BRL)</option>
@@ -90,6 +91,7 @@ const Calculadora = () => {
                             >
                                 <option value="USD">Dólar (USD)</option>
                                 <option value="EUR">Euro (EUR)</option>
+                                <option value="Bs">Bolivares (Bs)</option>
                                 <option value="COP">Peso Colombiano (COP)</option>
                                 <option value="ARS">Peso Argentino (ARS)</option>
                                 <option value="BRL">Real Brasileño (BRL)</option>

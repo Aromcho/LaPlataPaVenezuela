@@ -5,6 +5,15 @@
   
   color: #fff; /* Cambia el color del texto a blanco para mejor contraste */
 }
+.bg-image-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Asegura que la imagen cubra todo el ancho */
+  height: 100%; /* Asegura que la imagen cubra todo el alto */
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+  z-index: -2; /* Coloca la imagen detrás del contenido */
+}
 .capa {
   background-color: #000000c2;
 }

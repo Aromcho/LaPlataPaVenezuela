@@ -1,0 +1,24 @@
+.testimonials-container {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .testimonial-card {
+    border: none;
+    background-color: #F7D117;
+    border-radius: 8px;
+    height: 100%;
+  }
+  
+  .testimonial-card .card-text {
+    color: #0033AB;
+  }
+  
+  .testimonial-card .card-subtitle {
+    color: #fd4d62;
+    font-style: italic;
+  }
+  

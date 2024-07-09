@@ -8,8 +8,6 @@ import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
 import path from "path";
 import { createServer } from "http";
-import { Server } from "socket.io";
-import socketCb from "./src/router/index.socket.js"
 
 //import fileStore from "session-file-store";
 import MongoStore from "connect-mongo"; 
@@ -28,9 +26,7 @@ nodeServer.listen(port, ready);
 
 
 //
-const socketServer = new Server(nodeServer);
-socketServer.on("connection", socketCb);
-export { socketServer };
+
 
 //midelwares
 server.use(morgan('dev'));

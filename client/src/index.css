@@ -106,7 +106,7 @@ header > * {
 }
 
 .quienes-somos-section {
-    background-color: #f8f9fa; /* Fondo claro para la sección */
+    background: #f8f9fa;
     padding: 60px 0; /* Espaciado superior e inferior */
 }
 
@@ -133,8 +133,7 @@ header > * {
 }
 .servicios-section {
     padding: 60px 0;
-    background-color: #fd4d62; /* Fondo claro para contraste */
-
+    background:  #fd4d62;
 }
 
 .section-title {
@@ -179,6 +178,7 @@ header > * {
 }
 
 .card-img-top {
+    border-radius: 10px;
     height: 200px; /* Ajusta según necesidad */
     object-fit: cover; /* Asegura que la imagen cubra bien el espacio sin deformarse */
 }
@@ -220,4 +220,24 @@ header > * {
 }
  .img-boton {
   width: 25px;
+ }
+ 
+
+ .card-sobre-derecha {
+    
+    background: #F7D117;
+    height: 70%;
+    position: relative;
+    left: -5%;
+ }
+ .card-sobre-izquierda {
+    background: #F7D117;
+    height: 70%;
+    position: relative;
+    right: -5%;
+ }
+
+ .img-blue {
+    position: relative;
+    top: -50px;
  }

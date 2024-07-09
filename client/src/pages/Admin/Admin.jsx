@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Card, Navbar, Nav } from 'react-bootstrap';
 import ProductManagement from './ProductManagement/ProductManagement.jsx';
 import UserManagement from './UserManagement/UserManagement.jsx';
 import HomeCards from './HomeCards/HomeCards.jsx';
 import BioCard from './BioCard/BioCard.jsx';
-
+import { Context } from '../../context/CartContext.jsx';
 const Admin = () => {
   const [activeComponent, setActiveComponent] = useState('pedidos');
+  const { isAdmin } = useContext(Context); // Consumiendo el contexto
+
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -16,7 +18,14 @@ const Admin = () => {
         return <UserManagement />;
     }
   };
-
+  if (!isAdmin) {
+    return (
+      <div className="text-center">
+        <h1 className="text-danger">Acceso denegado</h1>
+        <p>No tienes permiso para acceder a esta página.</p>
+      </div>
+    );
+  }
   
 
 
