@@ -20,7 +20,8 @@ const BackgroundHeader = styled('header')({
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   width: '100%',
-  padding: '50px 0'
+  padding: '50px 0',
+  
 });
 
 const Face = () => {
@@ -28,17 +29,23 @@ const Face = () => {
     <div>
       
 
-      <header className="d-flex justify-content-around align-items-center">
-        <img src="./img/fondo.webp" alt="Fondo" className="bg-image" />
-        <div >
+      <header className="d-flex flex-column flex-md-row justify-content-around align-items-center p-2">
+          <img src="./img/fondo.webp" alt="Fondo" className="bg-image img-fluid" />
+        <Col xs={12} md={4} className="text-center text-md-left">
           <h1 className="display-4">La Plata pa' Venezuela</h1>
           <p className="lead">Tu solución confiable para enviar dinero a Venezuela.</p>
-          <a href="#contacto" className="btn btn-primary w-50 d-flex justify-content-around" ><img src="./img/whatsapp-AwvrBaRrObFNPLxM.avif" className='img-boton' alt="" /> Enviar</a>
-          <a href="#contacto" className="btn btn-primary w-50 d-flex justify-content-around mt-2" ><img src="./img/instagram-icon-YrDaMZ7O21hPKk33.avif" className='img-boton' alt="" /> Sigenos</a>
-        </div>
-        <div >
+          <div className="d-flex flex-column flex-md-row justify-content-around mt-3">
+            <a href="#contacto" className="btn btn-primary mb-2 mb-md-0 mx-md-2 d-flex justify-content-around">
+              <img src="./img/whatsapp-AwvrBaRrObFNPLxM.avif" className='img-boton' alt="" /> Enviar
+            </a>
+            <a href="#contacto" className="btn btn-primary mx-md-2 d-flex justify-content-around">
+              <img src="./img/instagram-icon-YrDaMZ7O21hPKk33.avif" className='img-boton' alt="" /> Síguenos
+            </a>
+          </div>
+        </Col>
+        <Col xs={12} md={4} className="d-flex justify-content-center">
           <img src="./img/LAPLATAPAVENEZUELA.png" alt="Venezuela" className="img-fluid rounded-circle" style={{ maxWidth: '200px' }} />
-        </div>
+        </Col>
       </header>
 
       <main>
@@ -60,9 +67,9 @@ const Face = () => {
           <div className=' w-100 d-flex justify-content-center mt-5'><img src="./img/E-Wallet-pana.png" className=' img-blue w-25 '/></div>
           <div className="container">
             <h2 className="section-title text-center text-white">Nuestros Servicios</h2>
-            <div className="col">
+            <div className=" col">
               <div className="row text-white mt-5">
-                <div className="container d-flex align-items-center">
+                <div className="cont-card container d-flex align-items-center">
                   <img src="./img/Cambio de Divisas.webp" className="card-img-top" alt="..." />
                   <div className="card-body card-sobre-derecha">
                     <h3 className="text-white">Envío de Remesas</h3>
@@ -71,7 +78,7 @@ const Face = () => {
                 </div>
               </div>
               <div className="row mt-5">
-                <div className="container d-flex align-items-center">
+                <div className="cont-card container d-flex align-items-center">
                   <div className="card-body card-sobre-izquierda">
                     <h3 className="text-white">Cambio de Divisas</h3>
                     <p className="text-white">Ofrecemos el mejor tipo de cambio para tus operaciones en diferentes divisas.</p>

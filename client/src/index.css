@@ -24,9 +24,10 @@
 }
 
 header {
+
     position: relative;
     overflow: hidden;
-    height: 50vh;
+    height: 75vh;
     color: white;
 }
 
@@ -137,107 +138,163 @@ header > * {
 }
 
 .section-title {
-    color: #0033AB; /* Color del título acorde al navbar */
-    margin-bottom: 50px; /* Espaciado después del título */
-    text-align: center; /* Centrar el título */
+    color: #0033AB;
+    margin-bottom: 50px;
+    text-align: center;
 }
 
 .service-card {
-    background-color: #ffffff; /* Fondo blanco para las tarjetas */
+    background-color: #ffffff;
     padding: 20px;
     margin-bottom: 30px;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
-    text-align: center; /* Texto centrado */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 .service-card img {
-    margin-bottom: 20px; /* Espaciado debajo de la imagen */
+    margin-bottom: 20px;
 }
 
 .service-card h3 {
-    color: #0033AB; /* Color del título del servicio */
+    color: #0033AB;
 }
 
 .service-card p {
-    color: #666; /* Color del texto para mejorar legibilidad */
+    color: #666;
 }
 
 .paises-monedas-section {
-    background-image: url('./img/LAPLATAPAVENEZUELA.png'); /* Cambia por tu imagen de fondo */
+    background-image: url('./img/LAPLATAPAVENEZUELA.png');
     background-size: cover;
     background-position: center;
-    
-    color: #fff; /* Cambia el color del texto a blanco para mejor contraste */
+    color: #fff;
 }
 
 .card {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro y semi-transparente */
-    backdrop-filter: blur(8px); /* Efecto borroso para el fondo de la tarjeta */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde blanco semi-transparente */
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card-img-top {
     border-radius: 10px;
-    height: 200px; /* Ajusta según necesidad */
-    object-fit: cover; /* Asegura que la imagen cubra bien el espacio sin deformarse */
+    height: 200px;
+    object-fit: cover;
 }
+
 .calculadora-section {
-    background-color: #f8f9fa; /* Fondo claro para la sección */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    padding: 40px; /* Más espacio interior */
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px;
 }
 
 .section-title {
-    color: #333; /* Color de texto oscuro para mejor contraste */
-    margin-bottom: 30px; /* Espaciado debajo del título */
-    text-align: center; /* Centrar el título */
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .form-group {
-    margin-bottom: 20px; /* Espaciado entre campos del formulario */
+    margin-bottom: 20px;
 }
 
 .form-control {
-    border-radius: 20px; /* Bordes redondeados para los campos de entrada y selección */
-    border: 1px solid #ced4da; /* Borde sutil */
-    padding: 10px 15px; /* Más espacio interior */
+    border-radius: 20px;
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
 }
 
 .btn-primary {
-    background-color: #007bff; /* Color principal */
-    border: none; /* Sin borde */
-    border-radius: 20px; /* Bordes redondeados */
-    padding: 10px 30px; /* Más espacio interior */
-    font-weight: bold; /* Texto en negrita */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
+    background-color: #007bff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3; /* Color al pasar el ratón */
+    background-color: #0056b3;
 }
- .img-boton {
-  width: 25px;
- }
- 
 
- .card-sobre-derecha {
-    
+.img-boton {
+    width: 25px;
+}
+
+.card-sobre-derecha {
     background: #F7D117;
     height: 70%;
     position: relative;
     left: -5%;
- }
- .card-sobre-izquierda {
+}
+
+.card-sobre-izquierda {
     background: #F7D117;
     height: 70%;
     position: relative;
     right: -5%;
- }
+}
 
- .img-blue {
+.img-blue {
     position: relative;
     top: -50px;
- }
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 24px;
+    }
+
+    .service-card {
+        padding: 10px;
+    }
+
+    .service-card h3 {
+        font-size: 18px;
+    }
+
+    .service-card p {
+        font-size: 14px;
+    }
+
+    .card-img-top {
+        height: 150px;
+    }
+
+    .form-control {
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        padding: 8px 20px;
+        font-size: 14px;
+    }.card-sobre-derecha {
+        background: #F7D117;
+        height: 70%;
+        position: relative;
+        left: 0;
+    }
+    
+    .card-sobre-izquierda {
+        background: #F7D117;
+        height: 70%;
+        position: relative;
+        right: 0;
+    }
+    
+    .img-blue {
+        position: relative;
+        top: 50px;
+    }
+    .cont-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
