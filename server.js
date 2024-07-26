@@ -8,6 +8,7 @@ import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
 import path from "path";
 import { createServer } from "http";
+import cors from "cors"
 
 //import fileStore from "session-file-store";
 import MongoStore from "connect-mongo"; 
@@ -23,11 +24,6 @@ const ready = async () => {
 const nodeServer = createServer(server);
 nodeServer.listen(port, ready);
 
-
-
-//
-
-
 //midelwares
 server.use(morgan('dev'));
 server.use(express.json());
@@ -35,12 +31,12 @@ server.use(express.urlencoded({ extended: true }));
 server.use("/public", express.static("public"));
 server.use(express.static(__dirname + "/public"));
 server.use(cookieParser(process.env.SECRET));
+server.use(cors());
 server.use(session({
     store: new MongoStore({mongoUrl: process.env.MONGO_URI, ttl: 60 * 60 }),
     secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
-    //cookie: { maxAge: 60 * 60 * 1000},
 })
 );
 
