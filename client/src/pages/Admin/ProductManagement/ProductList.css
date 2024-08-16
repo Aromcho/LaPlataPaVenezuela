@@ -1,0 +1,56 @@
+/* ProductList.css */
+
+/* Ajustes generales para el contenedor */
+.row {
+  margin: 0;
+}
+
+.col {
+  padding: 0.5rem;
+}
+
+/* Estilos para imágenes dentro de tarjetas */
+.img-card-admin {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Ajustes para tarjetas en pantallas móviles */
+.card {
+  margin: 0 auto;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 767px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  .img-card-admin {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .btn {
+    margin: 0.5rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+  }
+  
+  .list-unstyled li {
+    margin-bottom: 0.5rem;
+  }
+}
