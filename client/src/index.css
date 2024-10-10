@@ -23,13 +23,7 @@
     background-color: #000000c2;
 }
 
-header {
 
-    position: relative;
-    overflow: hidden;
-    height: 75vh;
-    color: white;
-}
 
 .bg-image {
     position: absolute;
@@ -183,12 +177,6 @@ header > * {
     object-fit: cover;
 }
 
-.calculadora-section {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-}
 
 .section-title {
     color: #333;

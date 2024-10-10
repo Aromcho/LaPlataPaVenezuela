@@ -120,7 +120,7 @@ const ProductManagement = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setShowAddModal(true)}>
+      <Button className="mb-3" variant="primary" onClick={() => setShowAddModal(true)}>
         Agregar Producto
       </Button>
 

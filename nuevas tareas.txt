@@ -1,0 +1,68 @@
+1. Header (Encabezado)
+Logo: Asegúrate de tener un logo que represente tu marca.
+Menú de Navegación:
+Inicio
+Cómo Funciona
+Tarifas
+Testimonios
+Preguntas Frecuentes (FAQ)
+Contacto
+Llamada a la Acción (CTA): "Envía dinero ahora" (botón destacado).
+2. Hero Section (Sección Principal)
+Imagen de Fondo: Una imagen cálida que represente la conexión familiar o cultural (puede ser una familia unida, paisajes de Venezuela, etc.).
+Mensaje Clave:
+"Envía amor a casa. Remesas seguras y rápidas a cualquier parte del mundo."
+Subtítulo:
+"La confianza de enviar dinero a tus seres queridos, con la seguridad que merecen."
+CTA: "Empieza a enviar dinero" (botón destacado).
+3. Cómo Funciona (Proceso)
+Título: "Enviar dinero es fácil y rápido."
+Pasos Visuales: Usa íconos o imágenes para ilustrar el proceso.
+Paso 1: Regístrate y crea tu cuenta.
+Paso 2: Introduce la información del destinatario.
+Paso 3: Elige el monto y el método de pago.
+Paso 4: Envía y recibe un comprobante.
+Nota de Seguridad: "Tus datos y dinero están protegidos con tecnología de encriptación de última generación."
+4. Tarifas Claras y Transparentes
+Título: "Tarifas sin sorpresas."
+Tabla de Tarifas: Muestra claramente las tarifas, destacando que no hay costos ocultos.
+Mensaje de Confianza: "Sabemos que tu dinero es importante. Por eso, ofrecemos tarifas competitivas y transparentes."
+5. Testimonios de Clientes
+Título: "Lo que nuestros clientes dicen."
+Citas Reales: Incluye testimonios de clientes satisfechos, con fotos si es posible.
+Ejemplo:
+"Enviar dinero a mi familia nunca ha sido tan fácil y seguro. - [Nombre], [Ubicación]"
+6. Sección de Preguntas Frecuentes (FAQ)
+Título: "Preguntas frecuentes."
+Preguntas Comunes: Responde a las dudas más frecuentes, como:
+¿Cuánto tiempo tarda en llegar la remesa?
+¿Qué documentos necesito para enviar dinero?
+¿Cómo puedo rastrear mi envío?
+7. Llamada a la Acción Secundaria
+Título: "Listo para enviar dinero?"
+Botón de CTA: "Empieza ahora" (destacado nuevamente).
+8. Footer (Pie de Página)
+Información de Contacto: Dirección, teléfono y correo electrónico.
+Enlaces Útiles: Políticas de privacidad, términos y condiciones.
+Redes Sociales: Iconos de las plataformas donde estás presente.
+Logo de Seguridad: Incluye sellos de seguridad o certificaciones si los tienes.
+Mensajes Clave para Inspirar Seguridad
+"Tu confianza es nuestra prioridad."
+"Cada remesa, una conexión."
+"Estamos aquí para ti, en cada paso del camino."
+Abordar los Dolores del Cliente
+Inseguridad sobre tarifas: "Sin tarifas ocultas. Lo que ves es lo que pagas."
+Preocupaciones sobre la velocidad: "Transferencias rápidas, porque sabemos que el tiempo es esencial."
+Miedo a la falta de soporte: "Nuestro equipo está aquí para responder tus preguntas y ayudarte en cualquier momento."
+
+
+
+
+1 - seguimiento(steper): se le envía un link de seguimiento, mas botones para seleccionar estado del envio.
+
+
+
+2 - estructura: todo esto
+
+
+3 - Boton de WhatsApp: flotador con llamada a la accion

@@ -87,7 +87,7 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary ">
     <div className="container ">
       <a className="navbar-brand" href="#">
-        <img src="./img/LAPLATAPAVENEZUELA.png" alt="Venezuela" className="img-fluid rounded-circle" style={{ maxWidth: '80px' }} />
+        <img src="./img/LAPLATAPAVENEZUELA.png" alt="Venezuela" className="img-fluid rounded-circle" style={{ maxWidth: '60px' }} />
       </a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
