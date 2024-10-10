@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Modal } from 'react-bootstrap';
-import ProductList from './ProductList'; // Asegúrate de que esta ruta es correcta
+import { Table, Button, Tooltip, OverlayTrigger, Form, Modal } from 'react-bootstrap';
+import { PencilSquare, Trash } from 'react-bootstrap-icons';
 
 const ProductManagement = () => {
   const [productos, setProductos] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [productToDelete, setProductToDelete] = useState(null);
   const [newProduct, setNewProduct] = useState({
     imagen: '',
     nombre: '',
@@ -28,12 +26,12 @@ const ProductManagement = () => {
         let url = `/api/product/paginate?limit=15&page=1`;
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error('La respuesta de la red no fue correcta');
+          throw new Error('Network response was not ok');
         }
         const data = await response.json();
         setProductos(data.response);
       } catch (error) {
-        console.error("Error al obtener los productos:", error);
+        console.error("Error fetching products:", error);
       }
     };
 
@@ -70,13 +68,13 @@ const ProductManagement = () => {
         body: JSON.stringify(newProduct)
       });
       if (!response.ok) {
-        throw new Error('La respuesta de la red no fue correcta');
+        throw new Error('Network response was not ok');
       }
       const newProductResponse = await response.json();
       setProductos([...productos, newProductResponse]);
       setShowAddModal(false);
     } catch (error) {
-      console.error("Error al crear el producto:", error);
+      console.error("Error creating product:", error);
     }
   };
 
@@ -91,37 +89,28 @@ const ProductManagement = () => {
         body: JSON.stringify(editProduct)
       });
       if (!response.ok) {
-        throw new Error('La respuesta de la red no fue correcta');
+        throw new Error('Network response was not ok');
       }
       const updatedProduct = await response.json();
       setProductos(productos.map(product => product._id === updatedProduct._id ? updatedProduct : product));
       setShowEditModal(false);
     } catch (error) {
-      console.error("Error al actualizar el producto:", error);
+      console.error("Error updating product:", error);
     }
   };
 
-  const handleDelete = async () => {
-    if (productToDelete) {
-      try {
-        const response = await fetch(`/api/product/${productToDelete._id}`, {
-          method: 'DELETE'
-        });
-        if (!response.ok) {
-          throw new Error('La respuesta de la red no fue correcta');
-        }
-        setProductos(productos.filter(product => product._id !== productToDelete._id));
-        setShowDeleteConfirm(false);
-        setProductToDelete(null);
-      } catch (error) {
-        console.error("Error al eliminar el producto:", error);
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/product/${id}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+      setProductos(productos.filter(product => product._id !== id));
+    } catch (error) {
+      console.error("Error deleting product:", error);
     }
-  };
-
-  const handleDeleteClick = (product) => {
-    setProductToDelete(product);
-    setShowDeleteConfirm(true);
   };
 
   const handleEditClick = (product) => {
@@ -135,14 +124,52 @@ const ProductManagement = () => {
         Agregar Producto
       </Button>
 
-      <ProductList
-        productos={productos}
-        onEdit={handleEditClick}
-        onDelete={handleDeleteClick}
-      />
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Moneda</th>
+            <th>Tasas</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productos.map((product) => (
+            <tr key={product._id}>
+              <td>
+                <img src={product.imagen} alt={product.nombre} style={{ width: '50px' }} />
+              </td>
+              <td>{product._id}</td>
+              <td>{product.nombre}</td>
+              <td>{product.moneda}</td>
+              <td>
+                {product.tasas && product.tasas.map((tasa) => (
+                  <div key={tasa._id}>
+                    {tasa.monedaDestino}: {tasa.tasa}
+                  </div>
+                ))}
+              </td>
+              <td>
+                <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
+                  <Button variant="outline-primary" size="sm" className="mx-2" onClick={() => handleEditClick(product)}>
+                    <PencilSquare />
+                  </Button>
+                </OverlayTrigger>
+                <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
+                  <Button variant="outline-danger" size="sm" onClick={() => handleDelete(product._id)}>
+                    <Trash />
+                  </Button>
+                </OverlayTrigger>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
 
       {/* Modal para Agregar Producto */}
-      <Modal show={showAddModal} onHide={() => setShowAddModal(false)} size="lg">
+      <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Producto</Modal.Title>
         </Modal.Header>
@@ -210,7 +237,7 @@ const ProductManagement = () => {
       </Modal>
 
       {/* Modal para Editar Producto */}
-      <Modal show={showEditModal} onHide={() => setShowEditModal(false)} size="lg">
+      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Producto</Modal.Title>
         </Modal.Header>
@@ -271,28 +298,10 @@ const ProductManagement = () => {
               Agregar Tasa
             </Button>
             <Button variant="primary" type="submit">
-              Actualizar Producto
+              Guardar Cambios
             </Button>
           </Form>
         </Modal.Body>
-      </Modal>
-
-      {/* Modal de Confirmación de Eliminación */}
-      <Modal show={showDeleteConfirm} onHide={() => setShowDeleteConfirm(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmar Eliminación</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          ¿Estás seguro de que deseas eliminar este producto?
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowDeleteConfirm(false)}>
-            Cancelar
-          </Button>
-          <Button variant="danger" onClick={handleDelete}>
-            Eliminar
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
