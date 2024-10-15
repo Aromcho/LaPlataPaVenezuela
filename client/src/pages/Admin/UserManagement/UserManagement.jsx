@@ -12,6 +12,7 @@ const UserManagement = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios('/api/user');
+        console.log('Usuarios:', response);
         setUsers(response.data.response);
       } catch (error) {
         console.error('Error al obtener los usuarios:', error);

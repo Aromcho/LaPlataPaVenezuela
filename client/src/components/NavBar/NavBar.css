@@ -1,0 +1,27 @@
+/* NavBar.css */
+.navbar {
+    background-color: #0033AB;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .nav-link {
+    color: #F7D117;
+    transition: transform 0.5s ease, color 0.5s ease;
+}
+
+.navbar .nav-link:hover {
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+.navbar-toggler {
+    border-color: #F7D117;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='%23F7D117' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+}
+
+.navbar-collapse {
+    justify-content: around;
+}

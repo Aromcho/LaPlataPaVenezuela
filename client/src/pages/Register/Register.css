@@ -23,3 +23,22 @@
   .text-white-custom {
     color: white;
   }
+
+  /* Register.css */
+.register-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register-form .form-control {
+  margin-bottom: 15px;
+}
+
+.register-form .btn-primary {
+  background-color: #F7D117;
+  color: #0033AB;
+}

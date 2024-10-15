@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Nav, Button, ButtonGroup } from 'react-boots
 import './ItemListContainer.css';
 import ItemList from '../ItemList/ItemList.jsx';
 import axios from 'axios';
-
+import "./ItemListContainer.css"; // Importación del archivo CSS
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);

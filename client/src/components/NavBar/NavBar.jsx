@@ -8,7 +8,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import BioCard from '../../pages/Admin/BioCard/BioCard.jsx';
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import "./NavBar.css"; // Importación del archivo CSS
 const NavBar = () => {
   const [isOnline, setIsOnline] = useState(false);
 

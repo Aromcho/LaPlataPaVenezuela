@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import ItemDetail from '../ItemDetail/ItemDetail.jsx';
 import axios from 'axios';
-
+import "./ItemDetailContainer.css"; // Importación del archivo CSS
 function ItemDetailContainer() {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
