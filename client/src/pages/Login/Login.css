@@ -22,3 +22,22 @@
   .btn-custom:hover {
     background-color: #2575fc;
   }
+
+  /* Login.css */
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-form .form-control {
+  margin-bottom: 15px;
+}
+
+.login-form .btn-primary {
+  background-color: #F7D117;
+  color: #0033AB;
+}

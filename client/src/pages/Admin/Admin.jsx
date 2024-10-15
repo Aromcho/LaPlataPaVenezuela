@@ -4,7 +4,7 @@ import ProductManagement from './ProductManagement/ProductManagement.jsx';
 import UserManagement from './UserManagement/UserManagement.jsx';
 import BioCard from './BioCard/BioCard.jsx';
 import { Context } from '../../context/CartContext.jsx';
-
+import "./Admin.css"; // Importación del archivo CSS
 const Admin = () => {
   const [activeComponent, setActiveComponent] = useState('productos'); // Cambiado a 'productos'
   const { isAdmin } = useContext(Context); // Consumiendo el contexto

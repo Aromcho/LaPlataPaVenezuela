@@ -1,0 +1,22 @@
+/* ItemDetailContainer.css */
+.card {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-img-top {
+    border-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 20px;
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+}

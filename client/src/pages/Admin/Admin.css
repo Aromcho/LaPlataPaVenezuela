@@ -1,0 +1,32 @@
+/* Admin.css */
+.admin-section {
+    background: #fd4d62;
+    padding: 60px 0;
+}
+
+.admin-section .section-title {
+    color: #0033AB;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.service-card {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.service-card img {
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    color: #0033AB;
+}
+
+.service-card p {
+    color: #666;
+}
