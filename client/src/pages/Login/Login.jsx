@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');tuputamadre
+  const [password, setPassword] = useState('');
 
 
   const handleSubmit = async (event) => {
