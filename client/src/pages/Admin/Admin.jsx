@@ -1,23 +1,46 @@
 import React, { useState, useContext } from 'react';
-import { Container, Row, Col, Card, Navbar, Nav } from 'react-bootstrap';
+import { Box, Tabs, Tab, Typography } from '@mui/material';
 import ProductManagement from './ProductManagement/ProductManagement.jsx';
 import UserManagement from './UserManagement/UserManagement.jsx';
-import BioCard from './BioCard/BioCard.jsx';
+import OrderManagement from './OrderManagement/OrderManagement.jsx';
 import { Context } from '../../context/CartContext.jsx';
-import "./Admin.css"; // Importación del archivo CSS
+import './Admin.css'; // Importación del archivo CSS
+
+// Componente para cada TabPanel
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`tabpanel-${index}`}
+      aria-labelledby={`tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+// Propiedades de accesibilidad para las pestañas
+function a11yProps(index) {
+  return {
+    id: `tab-${index}`,
+    'aria-controls': `tabpanel-${index}`,
+  };
+}
+
 const Admin = () => {
-  const [activeComponent, setActiveComponent] = useState('productos'); // Cambiado a 'productos'
+  const [value, setValue] = useState(0); // Controla la pestaña activa
   const { isAdmin } = useContext(Context); // Consumiendo el contexto
 
-  const renderComponent = () => {
-    switch (activeComponent) {
-      case 'productos':
-        return <ProductManagement />;
-      case 'usuarios':
-        return <UserManagement />;
-      default:
-        return null; // Puedes agregar un valor por defecto si es necesario
-    }
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   if (!isAdmin) {
@@ -30,28 +53,27 @@ const Admin = () => {
   }
 
   return (
-    <div>
-      <Container fluid className="bg-secundary" style={{ display: 'flex' }}>
-        <Navbar bg="dark" variant="dark" className="flex-column mt-5">
-          <Nav className="flex-column">
-            {[
-              { name: 'Productos', icon: 'box-seam' },
-              { name: 'Usuarios', icon: 'people-fill' },
-            ].map((item, index) => (
-              <Nav.Link key={index} onClick={() => setActiveComponent(item.name.toLowerCase())}>
-                <i className={`bi ${item.icon}`} style={{ marginRight: '8px' }}></i>
-                {item.name}
-              </Nav.Link>
-            ))}
-            <BioCard />
-          </Nav>
-        </Navbar>
-        <main style={{ flexGrow: 1, padding: '20px' }}>
-          <h1 className='text-white'>Usuarios</h1>
-          {renderComponent()}
-        </main>
-      </Container>
-    </div>
+    <Box sx={{ width: '100%' }}>
+      {/* Barra de pestañas */}
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="Admin tabs">
+          <Tab label="Tasas" {...a11yProps(0)} />
+          <Tab label="Usuarios" {...a11yProps(1)} />
+          <Tab label="Ordenes" {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+
+      {/* Paneles de cada pestaña */}
+      <CustomTabPanel value={value} index={0}>
+        <ProductManagement />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <UserManagement />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <OrderManagement />
+      </CustomTabPanel>
+    </Box>
   );
 };
 
