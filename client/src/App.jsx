@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import { Provider } from "./context/CartContext.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
+import StepperAdmin from "./pages/Admin/Stepper/StepperAdmin.jsx"; // Ruta corregida
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/products/real" element={<ItemListContainer />} />
             <Route path="/products/:productId"element={<ItemDetailContainer />}/>
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/stepper" element={<StepperAdmin />} /> {/* Agrega la nueva ruta */}
           </Routes>
         </BrowserRouter>
       </Provider>
