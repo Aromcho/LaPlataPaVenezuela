@@ -1,0 +1,27 @@
+/* src/pages/Checkout/CheckoutForm.css */
+.checkout-form {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+/* Estilo del botón de subir comprobante */
+.upload-button {
+    background-color: #0033AB !important;
+    color: #F7D117 !important;
+    margin-top: 8px;
+}
+
+/* Estilo del botón de enviar */
+.submit-button {
+    background-color: #F7D117 !important;
+    color: #0033AB !important;
+    margin-top: 16px;
+}
+
+/* Estilo para centrar el contenido */
+.checkout-form h5 {
+    color: #333;
+    margin-bottom: 16px;
+}
