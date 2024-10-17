@@ -40,6 +40,15 @@
 .img-boton {
     width: 25px; /* Tamaño de los íconos de los botones */
 }
+/* Estilos para la calculadora en el hero */
+.calculadora-hero {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo semitransparente */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 
 /* Estilos Responsivos */
 @media (max-width: 768px) {

@@ -86,37 +86,10 @@ const Register = () => { // Añade props como argumento
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-1" controlId="formBasicRole">
-                  <Form.Label className="text-white">Rol</Form.Label>
-                  <Form.Select
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    required
-                  >
-                    <option value="">Selecciona tu rol</option>
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                    <option value="dev">Dev</option>
-                  </Form.Select>
-                </Form.Group>
-
-                <Form.Group className="mb-1" controlId="formBasicAge">
-                  <Form.Label className="text-white">Edad</Form.Label>
-                  <Form.Control
-                    type="number"
-                    placeholder="Ingresa tu edad"
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                    required
-                  />
-                </Form.Group>
-
-                
-
                 <Button
                   variant="primary"
                   type="submit"
-                  className="w-100 btn-custom"
+                  className="w-100 btn-custom mt-3"
                 >
                   Registrarse
                 </Button>

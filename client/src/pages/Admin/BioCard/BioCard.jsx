@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Image } from 'react-bootstrap';
+import { Avatar } from '@mui/material';
+
 
 const BioCard = () => {
   const [usuario, setUsuario] = useState({
@@ -41,8 +43,9 @@ const BioCard = () => {
   return (
     <Card className='mt-2 mb-2'>
       <Card.Body>
-        <div className="text-center">
-        <Image src="https://yt3.googleusercontent.com/vRF8BHREiJ3Y16AbMxEi_oEuoQlnNNqGpgULuZ6zrWSAi24HcxX3Vko42RN8ToctH-G0qlWd=s900-c-k-c0x00ffffff-no-rj" roundedCircle style={{ width: '100px', height: '100px' }} />          <div className="mt-3">
+        <div className="d-flex text-center">
+          <Avatar className='m-2' sx={{ width: 100, height: 100 }} />
+                 <div className="mt-3">
             <h5>{usuario.nombre}</h5>
             <p>{usuario.email}</p>
           </div>

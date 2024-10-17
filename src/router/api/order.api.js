@@ -5,6 +5,7 @@ const orderRouter = Router();
 
 orderRouter.get('/', read);
 orderRouter.get('/:oid', readOne);
+orderRouter.get('/user/:uid', readByUser); // Ruta para buscar órdenes por ID de usuario
 orderRouter.post('/', create);
 orderRouter.put('/:oid', update);
 orderRouter.delete('/:oid', destroy);
@@ -19,36 +20,54 @@ async function create(req, res, next) {
         });
     } catch (error) {
         next(error);
-        
     }
 }
+
 async function read(req, res, next) {
     try {
         const orders = await orderManager.read();
-        if(orders.length > 0){
-            return res.status(200).json(orders)
+        if (orders.length > 0) {
+            return res.status(200).json(orders);
         } else {
             const error = new Error('Orders not found');
             error.statusCode = 404;
             throw error;
         }
     } catch (error) {
-        next(error)
+        next(error);
     }
 }
+
 async function readOne(req, res, next) {
     try {
         const { oid } = req.params;
         const order = await orderManager.readOne(oid);
-        if(order){
-            return res.status(200).json(order)
+        if (order) {
+            return res.status(200).json(order);
         } else {
             const error = new Error('Order not found');
             error.statusCode = 404;
             throw error;
         }
     } catch (error) {
-        next(error)
+        next(error);
+    }
+}
+
+// Nueva función para filtrar órdenes por el ID de usuario
+async function readByUser(req, res, next) {
+    try {
+        const { uid } = req.params;
+        const orders = await orderManager.read({ user_id: uid }); // Filtra por `user_id`
+        if (orders.length > 0) {
+            return res.status(200).json(orders);
+        } else {
+            const error = new Error('Orders not found for this user');
+            error.statusCode = 404;
+            throw error;
+        }
+    } catch (error) {
+        next(error);
     }
 }
 
@@ -65,6 +84,7 @@ async function update(req, res, next) {
         next(error);
     }
 }
+
 async function destroy(req, res, next) {
     try {
         const { oid } = req.params;
@@ -76,4 +96,5 @@ async function destroy(req, res, next) {
         next(error);
     }
 }
- export default orderRouter;
+
+export default orderRouter;

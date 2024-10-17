@@ -1,0 +1,17 @@
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Separación entre las tarjetas */
+}
+
+.send-money-card {
+  border: 2px solid #007bff; /* Borde destacado */
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.send-money-card:hover {
+  transform: translateY(-5px); /* Efecto hover */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Sombra en hover */
+}

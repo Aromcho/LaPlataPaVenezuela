@@ -54,7 +54,6 @@ const NavBar = () => {
     if (isOnline) {
       return (
         <>
-          <h6 className='text-white m-1'>Hola Administrador</h6> {/* Cambiado a h6 para tamaño más pequeño */}
           <Dropdown className="ms-1">
             <Dropdown.Toggle variant="dark" id="dropdown-basic">
               Perfil
@@ -96,7 +95,7 @@ const NavBar = () => {
             <Nav.Link as={Link} to="#calculadora">Calculadora</Nav.Link>
             <Nav.Link as={Link} to="#testimonios">Testimonios</Nav.Link>
             <Nav.Link as={Link} to="#faq">Preguntas Frec.</Nav.Link>
-            <Nav.Link as={Link} to="#contacto">Contacto</Nav.Link>
+            <Nav.Link as={Link} to="/envios">Mis Envios</Nav.Link>
           </Nav>
           {renderAuthButtons()}
         </Navbar.Collapse>

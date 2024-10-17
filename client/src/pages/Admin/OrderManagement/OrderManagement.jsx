@@ -49,6 +49,23 @@ const OrderManagement = () => {
     }
   };
 
+  // Función para eliminar una orden
+  const handleDelete = async (orderId) => {
+    try {
+      const response = await fetch(`/api/orders/${orderId}`, {
+        method: 'DELETE',
+      });
+      if (response.status === 200) {
+        const updatedOrders = orders.filter(order => order._id !== orderId);
+        setOrders(updatedOrders);
+      } else {
+        console.error("Error deleting order");
+      }
+    } catch (error) {
+      console.error("Error deleting order:", error);
+    }
+  };
+
   if (isLoading) return <div className="spinner-container"><Spinner animation="border" /></div>;
 
   return (
@@ -81,7 +98,7 @@ const OrderManagement = () => {
                     </Button>
                   </OverlayTrigger>
                   <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
-                    <Button variant="outline-danger" size="sm">
+                    <Button variant="outline-danger" size="sm" onClick={() => handleDelete(order._id)}>
                       <Trash />
                     </Button>
                   </OverlayTrigger>

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import { Calculator, Send } from 'react-bootstrap-icons'; // Importar los iconos de react-bootstrap-icons
 import "./Calculadora.css";
 
@@ -117,9 +119,9 @@ const Calculadora = () => {
                 <button className="btn btn-primary" onClick={calculate}>
                     <Calculator style={{ marginRight: '8px' }} /> Calcular
                 </button>
-                <button className="btn btn-primary m-2">
+                <Button as={Link} to="/checkout" className="btn btn-primary m-2">
                     <Send style={{ marginRight: '8px' }} /> Envía
-                </button>
+                </Button>
             </div>
         </div>
     );
