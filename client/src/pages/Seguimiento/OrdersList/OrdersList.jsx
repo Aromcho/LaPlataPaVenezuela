@@ -6,7 +6,7 @@ const OrdersList = ({ orders }) => {
   return (
     <div className="orders-list">
       {orders.map(order => (
-        <Orders key={order.id} order={order} />
+        <Orders key={order._id} order={order} />
       ))}
     </div>
   );
