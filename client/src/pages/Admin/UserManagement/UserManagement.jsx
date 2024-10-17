@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Image, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Card, Button, Row, Col, Spinner, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import axios from 'axios';
-import { PencilSquare, Trash } from 'react-bootstrap-icons'; // Asegúrate de instalar react-bootstrap-icons
+import { PencilSquare, Trash } from 'react-bootstrap-icons';
+import Avatar from '@mui/material/Avatar';
+import './UserManagement.css'; // Archivo de estilos personalizado
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -12,7 +14,6 @@ const UserManagement = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios('/api/user');
-        console.log('Usuarios:', response);
         setUsers(response.data.response);
       } catch (error) {
         console.error('Error al obtener los usuarios:', error);
@@ -25,47 +26,54 @@ const UserManagement = () => {
     fetchUsers();
   }, []);
 
-  if (isLoading) return <div>Cargando usuarios...</div>;
-  if (error) return <div>Error al cargar los usuarios: {error}</div>;
+  if (isLoading) return (
+    <div className="loading-container">
+      <Spinner animation="border" variant="primary" />
+      <p>Cargando usuarios...</p>
+    </div>
+  );
+  
+  if (error) return <div className="error-container">Error al cargar los usuarios: {error}</div>;
 
   return (
-    <Table striped bordered hover responsive>
-      <thead>
-        <tr>
-          <th>Avatar</th>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Rol</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div className="user-management-container">
+      <h2 className="section-title">Gestión de Usuarios</h2>
+      <Row>
         {users.map((user) => (
-          <tr key={user._id || user.id}>
-            <td>
-              <Image src="https://yt3.googleusercontent.com/vRF8BHREiJ3Y16AbMxEi_oEuoQlnNNqGpgULuZ6zrWSAi24HcxX3Vko42RN8ToctH-G0qlWd=s900-c-k-c0x00ffffff-no-rj" roundedCircle style={{ width: '50px', height: '50px' }} />
-            </td>
-            <td>{user.id}</td>
-            <td>{user.name}</td>
-            <td>{user.email}</td>
-            <td>{user.role}</td>
-            <td>
-              <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
-                <Button variant="outline-primary" size="sm" className="mr-2">
-                  <PencilSquare />
-                </Button>
-              </OverlayTrigger>
-              <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
-                <Button variant="outline-danger" size="sm">
-                  <Trash />
-                </Button>
-              </OverlayTrigger>
-            </td>
-          </tr>
+          <Col key={user._id || user.id} md={4} className="mb-4">
+            <Card className="custom-card">
+              <Card.Body className="text-center">
+                <Avatar
+                  alt={user.name}
+                  src={user.avatar || "https://yt3.googleusercontent.com/vRF8BHREiJ3Y16AbMxEi_oEuoQlnNNqGpgULuZ6zrWSAi24HcxX3Vko42RN8ToctH-G0qlWd=s900-c-k-c0x00ffffff-no-rj"}
+                  sx={{ width: 80, height: 80, margin: "0 auto 20px" }}
+                />
+                <Card.Title className="custom-card-title">{user.name}</Card.Title>
+                <Card.Text className="custom-card-text">
+                  <strong>ID:</strong> {user.id || user._id}
+                  <br />
+                  <strong>Email:</strong> {user.email}
+                  <br />
+                  <strong>Rol:</strong> {user.role}
+                </Card.Text>
+                <div className="d-flex justify-content-center">
+                  <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
+                    <Button variant="outline-primary" size="sm" className="mx-2">
+                      <PencilSquare />
+                    </Button>
+                  </OverlayTrigger>
+                  <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
+                    <Button variant="outline-danger" size="sm" className="mx-2">
+                      <Trash />
+                    </Button>
+                  </OverlayTrigger>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </tbody>
-    </Table>
+      </Row>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Tooltip, OverlayTrigger, Form, Modal } from 'react-bootstrap';
+import { Button, Card, Row, Col, Modal, Form, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
+import './ProductManagement.css'; // Agregar un archivo CSS personalizado para más estilo
 
 const ProductManagement = () => {
   const [productos, setProductos] = useState([]);
@@ -25,7 +26,6 @@ const ProductManagement = () => {
       try {
         let url = `/api/product/paginate?limit=15&page=1`;
         const response = await fetch(url);
-        console.log('products:', response);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -122,52 +122,51 @@ const ProductManagement = () => {
   return (
     <>
       <Button className="mb-3" variant="primary" onClick={() => setShowAddModal(true)}>
-        Agregar Producto
+        Agregar Tasa
       </Button>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Imagen</th>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Moneda</th>
-            <th>Tasas</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productos.map((product) => (
-            <tr key={product._id}>
-              <td>
-                <img src={product.imagen} alt={product.nombre} style={{ width: '50px' }} />
-              </td>
-              <td>{product._id}</td>
-              <td>{product.nombre}</td>
-              <td>{product.moneda}</td>
-              <td>
-                {product.tasas && product.tasas.map((tasa) => (
-                  <div key={tasa._id}>
-                    {tasa.monedaDestino}: {tasa.tasa}
-                  </div>
-                ))}
-              </td>
-              <td>
-                <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
-                  <Button variant="outline-primary" size="sm" className="mx-2" onClick={() => handleEditClick(product)}>
-                    <PencilSquare />
-                  </Button>
-                </OverlayTrigger>
-                <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
-                  <Button variant="outline-danger" size="sm" onClick={() => handleDelete(product._id)}>
-                    <Trash />
-                  </Button>
-                </OverlayTrigger>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      {/* Cards para productos */}
+      <Row>
+        {productos.map((product) => (
+          <Col md={4} key={product._id} className="mb-4">
+            <Card className="custom-card">
+              <div className="card-img-wrapper">
+                <Card.Img
+                  variant="top"
+                  src={product.imagen}
+                  alt={product.nombre}
+                  className="custom-card-img"
+                />
+              </div>
+              <Card.Body>
+                <Card.Title className="custom-card-title">{product.nombre}</Card.Title>
+                <Card.Text className="custom-card-text">
+                  <strong>Moneda:</strong> {product.moneda}
+                  <br />
+                  <strong>Tasas:</strong>
+                  {product.tasas && product.tasas.map((tasa, index) => (
+                    <div key={index}>
+                      {tasa.monedaDestino}: {tasa.tasa}
+                    </div>
+                  ))}
+                </Card.Text>
+                <div className="d-flex justify-content-between">
+                  <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
+                    <Button variant="outline-primary" size="sm" onClick={() => handleEditClick(product)}>
+                      <PencilSquare />
+                    </Button>
+                  </OverlayTrigger>
+                  <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
+                    <Button variant="outline-danger" size="sm" onClick={() => handleDelete(product._id)}>
+                      <Trash />
+                    </Button>
+                  </OverlayTrigger>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
 
       {/* Modal para Agregar Producto */}
       <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>

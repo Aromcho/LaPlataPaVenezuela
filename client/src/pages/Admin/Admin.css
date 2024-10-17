@@ -30,3 +30,17 @@
 .service-card p {
     color: #666;
 }
+.admin-container {
+    background: #f4f4f4;
+  }
+  
+  .appbar {
+    background-color: #0033AB;
+  }
+  
+  @media (max-width: 768px) {
+    .appbar {
+      justify-content: space-between;
+    }
+  }
+  

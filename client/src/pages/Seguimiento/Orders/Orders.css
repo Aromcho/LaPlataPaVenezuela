@@ -1,0 +1,6 @@
+/* Estilo para cada elemento de la orden */
+.order-item {
+    display: flex;
+    justify-content: center;
+  }
+  

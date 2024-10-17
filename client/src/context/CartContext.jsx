@@ -7,6 +7,7 @@ const Context = createContext();
 const Provider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isUser, setIsUser] = useState([]);
 
 
   useEffect(() => {
@@ -28,6 +29,20 @@ const Provider = ({ children }) => {
     fetchItems();
   }, []);
 
+  useEffect(() => {
+    const checkIfUser = async () => {
+      try {
+        const response = await axios.get('/api/sessions/online');
+        const user_id = response.data.user_id;
+        setIsUser(user_id); // Guardar el user_id en el estado
+      } catch (error) {
+        console.error("Error al verificar el estado del usuario", error);
+        setIsUser(false); // En caso de error, asumir que el usuario no es administrador
+      }
+    };
+  
+    checkIfUser();
+  }, []);
 
   const fetchItems = async () => {
     try {
@@ -53,7 +68,9 @@ const Provider = ({ children }) => {
     <Context.Provider
       value={{
         isAdmin,
+        isUser,
         adminAction, // Exponer la acción especial del administrador
+
       }}
     >
       {children}
