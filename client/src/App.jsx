@@ -11,6 +11,7 @@ import Admin from "./pages/Admin/Admin.jsx";
 import StepperAdmin from "./pages/Admin/Stepper/StepperAdmin.jsx";
 import CheckoutForm from "./pages/Checkout/CheckoutForm.jsx"; // Importa el nuevo componente
 import { Provider } from "./context/CartContext.jsx";
+import ChatBubble from './components/ChatBubble/ChatBubble'; // Importación del ChatBubble
 
 function App() {
   return (
@@ -26,8 +27,9 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/stepper" element={<StepperAdmin />} />
           <Route path="/seguimiento" element={<Seguimiento />} />
-          <Route path="/checkout" element={<CheckoutForm />} /> {/* Nueva ruta para CheckoutForm */}
+          <Route path="/checkout" element={<CheckoutForm />} />
         </Routes>
+        <ChatBubble /> {/* Coloca el componente ChatBubble aquí */}
       </BrowserRouter>
     </Provider>
   );
