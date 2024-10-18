@@ -10,6 +10,7 @@ import MisEnvios from "./pages/MisEnvios/MisEnvios.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx"; // Importa el nuevo componente
 import { Provider } from "./context/CartContext.jsx";
+import ChatBubble from "./components/ChatBubble/ChatBubble.jsx";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/envios" element={<MisEnvios />} />
           <Route path="/checkout" element={<Checkout />} /> {/* Nueva ruta para CheckoutForm */}
         </Routes>
+        <ChatBubble />
       </BrowserRouter>
     </Provider>
   );

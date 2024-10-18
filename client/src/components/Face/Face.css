@@ -9,14 +9,13 @@ body {
 }
 
 /* Sección de pasos */
-.pasos-section {
-  background-color: rgba(0, 0, 0, 0.7); /* Fondo negro transparente */
+ /* Sección de pasos */
+ .pasos-section {
+  background-color: rgb(255, 255, 255); /* Fondo negro transparente */
   padding: 20px;
-  border-radius: 10px;
-  margin: 20px auto;
-  width: 90%; /* Aumenta el ancho para pantallas pequeñas */
-  max-width: 800px; /* Máximo ancho para pantallas grandes */
+  width: 100%; /* Aumenta el ancho para pantallas pequeñas */
   text-align: center; /* Asegura que todo el texto esté centrado */
+  color: black;
 }
 
 .pasos-container {
@@ -30,7 +29,7 @@ body {
   flex: 1; /* Cada "paso" ocupa espacio igual */
   text-align: center;
   margin: 10px; 
-  color: white; /* Para que el texto sea visible sobre el fondo oscuro */
+  color: black; /* Para que el texto sea visible sobre el fondo oscuro */
 }
 
 .paso-img {

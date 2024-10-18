@@ -1,0 +1,151 @@
+/* Contenedor principal del chat */
+.chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+  }
+  
+  /* Caja del chat */
+  .chat-box {
+    width: 300px; /* Ancho de la caja de chat */
+    max-height: 500px; /* Altura máxima de la caja */
+    background-color: white; /* Color de fondo */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    display: none; /* Ocultar por defecto */
+    flex-direction: column; /* Alinear los elementos en columna */
+    justify-content: flex-start; /* Alinear mensajes desde el inicio */
+    overflow-y: auto; /* Agregar scroll si hay más mensajes */
+  }
+  
+  /* Caja de chat abierta */
+  .chat-box.open {
+    display: flex; /* Mostrar caja de chat */
+  }
+  
+  /* Encabezado del chat */
+  .chat-header {
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color de texto */
+    padding: 10px; /* Espaciado interno */
+    display: flex; /* Mostrar como flexbox */
+    justify-content: space-between; /* Espaciado entre elementos */
+    align-items: center; /* Alinear elementos verticalmente */
+    border-radius: 10px 10px 0 0; /* Bordes redondeados en la parte superior */
+  }
+  
+  /* Estilos para la lista de mensajes */
+  .messages-list {
+    padding: 10px; /* Espaciado interno */
+    flex: 1; /* Tomar el espacio restante */
+    display: flex; /* Mostrar como flexbox */
+    flex-direction: column; /* Alinear mensajes en columna */
+  }
+  
+  /* Estilo para los mensajes */
+  .message {
+    margin-bottom: 10px; /* Espacio entre mensajes */
+    padding: 8px 12px; /* Espaciado interno */
+    border-radius: 15px; /* Bordes redondeados */
+    max-width: 70%; /* Ancho máximo de los mensajes */
+    word-wrap: break-word; /* Permitir el salto de línea */
+    color: white; /* Color del texto */
+  }
+  
+  /* Mensajes enviados */
+  .sent {
+    background-color: rgb(48, 46, 46); /* Fondo negro para mensajes enviados */
+    align-self: flex-end; /* Alinear a la derecha */
+  }
+  
+  /* Mensajes recibidos */
+  .received {
+    background-color: rgb(48, 46, 46); /* Fondo negro para mensajes recibidos */
+    align-self: flex-start; /* Alinear a la izquierda */
+  }
+  
+  /* Estilo para la entrada de chat */
+  .chat-input {
+    display: flex; /* Mostrar como flexbox */
+    padding: 10px; /* Espaciado interno */
+    background-color: #f7f7f7; /* Color de fondo */
+    border-radius: 0 0 10px 10px; /* Bordes redondeados en la parte inferior */
+  }
+  
+  /* Campo de entrada de texto */
+  .chat-input input {
+    flex: 1; /* Tomar el espacio restante */
+    padding: 8px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-right: 10px; /* Espacio a la derecha */
+  }
+  
+  /* Botón de envío */
+  .chat-input button {
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color de texto */
+    padding: 8px 12px; /* Espaciado interno */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar el ratón */
+  }
+  
+  /* Icono de flotación para abrir el chat */
+  .chat-float {
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color de texto */
+    border: none; /* Sin bordes */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 50%; /* Hacerlo circular */
+    cursor: pointer; /* Cambiar cursor al pasar el ratón */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  /* Burbuja de ayuda */
+  .chat-tooltip {
+    position: absolute; /* Posicionamiento absoluto */
+    bottom: 60px; /* Distancia desde la parte inferior */
+    right: 20px; /* Distancia desde la derecha */
+    background-color: #000; /* Color de fondo */
+    color: #fff; /* Color de texto */
+    padding: 5px 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 12px; /* Tamaño de fuente */
+  }
+  
+  /* Animación de carga */
+  .loading-dots {
+    font-size: 24px; /* Tamaño de fuente */
+    text-align: center; /* Centrar el texto */
+  }
+  
+  /* Flotador de iconos sociales */
+  .floating-icons {
+    position: fixed; /* Posicionamiento fijo */
+    bottom: 20px; /* Distancia desde la parte inferior */
+    right: 20px; /* Distancia desde la derecha */
+    display: flex; /* Mostrar como flexbox */
+    flex-direction: column; /* Alinear elementos en columna */
+    gap: 10px; /* Espacio entre elementos */
+  }
+  
+  /* Estilo para el ícono de WhatsApp */
+  .floating-icons .whatsapp-float {
+    background-color: #25d366; /* Color para WhatsApp */
+    color: white; /* Color de texto */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 50px; /* Bordes redondeados */
+    font-size: 24px; /* Tamaño de fuente */
+    text-align: center; /* Centrar texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    transition: transform 0.3s; /* Transición suave */
+  }
+  
+  /* Efecto al pasar el ratón sobre los iconos */
+  .floating-icons div:hover {
+    color: white; /* Color de texto al pasar el ratón */
+    transform: scale(1.1); /* Aumentar el tamaño */
+  }
+  

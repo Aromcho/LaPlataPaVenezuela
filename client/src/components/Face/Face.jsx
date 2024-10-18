@@ -5,6 +5,7 @@ import Calculadora from '../Calculadora/Calculadora.jsx';
 import ItemListContainer from '../ItemListContainer/ItemListContainer.jsx';
 import Testimonials from '../Testimonials/Testimonials.jsx';
 import ContactForm from '../ContactForm/ContactForm.jsx';
+import PasosEnvioDinero from '../PasosEnvioDinero/PasosEnvioDinero.jsx';
 
 const Face = () => {
   return (
@@ -40,28 +41,7 @@ const Face = () => {
       </header>
 
       <main>
-        <section className="pasos-section" style={{ textAlign: 'center', marginTop: '30px' }}>
-          <h2 style={{ color: 'white', marginBottom: '20px' }}>Pasos para Enviar Dinero</h2>
-          <div className="pasos-container">
-            <div className="paso">
-              <img src="/paso1.png" alt="Paso 1" className="paso-img" />
-              <p>Paso 1: Regístrate y crea tu cuenta.</p>
-            </div>
-            <div className="paso">
-              <img src="/paso2.png" alt="Paso 2" className="paso-img" />
-              <p>Paso 2: Introduce la información del destinatario.</p>
-            </div>
-            <div className="paso">
-              <img src="/paso3.png" alt="Paso 3" className="paso-img" />
-              <p>Paso 3: Elige el monto y el método de pago.</p>
-            </div>
-            <div className="paso">
-              <img src="/paso4.png" alt="Paso 4" className="paso-img" />
-              <p>Paso 4: Envía y recibe un comprobante.</p>
-            </div>
-          </div>
-          <p className="nota-seguridad">Tus datos y dinero están protegidos con tecnología de encriptación de última generación.</p>
-        </section>
+        <PasosEnvioDinero/>
         <ItemListContainer />
         <Testimonials />
         <ContactForm />
