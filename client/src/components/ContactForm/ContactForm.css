@@ -1,33 +1,66 @@
 .contact-form-container {
-    background-color: #ffffff;
-    padding: 40px 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+  background-color: #000000ad;
+  padding: 40px 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 100px center; /* Centrar el contenedor */
+  max-width: 500px ; /* Ancho máximo del formulario */
+  width: 100%; /* Permitir que use el 100% del ancho disponible */
+}
+
+.form-layout {
+  display: flex; /* Usar flex para alinear los enlaces y el formulario */
+  align-items: flex-start; /* Alinear elementos al inicio */
+  justify-content: space-between;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column; /* Apilar enlaces verticalmente */
+  margin-right: 20px; /* Espacio entre los enlaces y el formulario */
+}
+
+.social-links a {
+  background-color: #0033AB; /* Color de fondo */
+  color: white; /* Color de texto */
+  padding: 10px 15px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  text-decoration: none; /* Sin subrayado */
+  width: 200px; /* Ancho fijo */
+  margin-bottom: 30px; /* Espacio entre enlaces */
+  transition: background-color 0.3s; /* Animación al pasar el mouse */
+}
+
+.social-links a:hover {
+  background-color: #F7D117; /* Color de fondo al pasar el mouse */
+}
+
+.social-icon {
+  margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+.contact-form .form-control {
+  border-color: #F7D117;
+}
+
+.contact-form .btn-primary {
+  background-color: #0033AB;
+  border-color: #0033AB;
+}
+
+.contact-form .btn-primary:hover {
+  background-color: #F7D117;
+  border-color: #F7D117;
+}
+
+/* Agregar margen al título */
+.contact-form-container h2 {
+  margin-bottom: 20px; /* Aumentar el margen debajo del título */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .form-layout {
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
   }
-  
-  .contact-form-container h2 {
-    color: #0033AB;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .contact-form .form-control {
-    border-color: #F7D117;
-  }
-  
-  .contact-form .btn-primary {
-    background-color: #0033AB;
-    border-color: #0033AB;
-  }
-  
-  .contact-form .btn-primary:hover {
-    background-color: #F7D117;
-    border-color: #F7D117;
-  }
-  
+}

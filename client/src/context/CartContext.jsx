@@ -1,14 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import Swal from "sweetalert2";
 
 const Context = createContext();
 
 const Provider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isUser, setIsUser] = useState([]);
-
+  const [isUser, setIsUser] = useState(null);
 
   useEffect(() => {
     const checkIfAdmin = async () => {
@@ -21,7 +19,7 @@ const Provider = ({ children }) => {
         }
       } catch (error) {
         console.error("Error al verificar el estado del usuario", error);
-        setIsAdmin(false); // En caso de error, asumir que el usuario no es administrador
+        setIsAdmin(false); 
       }
     };
   
@@ -33,11 +31,11 @@ const Provider = ({ children }) => {
     const checkIfUser = async () => {
       try {
         const response = await axios.get('/api/sessions/online');
-        const user_id = response.data.user_id;
-        setIsUser(user_id); // Guardar el user_id en el estado
+        const userId = response.data.user_id;
+        setIsUser(userId); 
       } catch (error) {
         console.error("Error al verificar el estado del usuario", error);
-        setIsUser(false); // En caso de error, asumir que el usuario no es administrador
+        setIsUser(null); 
       }
     };
   
@@ -55,12 +53,23 @@ const Provider = ({ children }) => {
       console.error("Error al obtener los productos", error);
     }
   };
+
   const adminAction = () => {
     if (isAdmin) {
       console.log("Acción especial del administrador");
-      // Aquí puedes poner cualquier lógica o función especial para los administradores
     } else {
       console.log("Acceso denegado. Solo los administradores pueden realizar esta acción.");
+    }
+  };
+
+  const getUserId = async () => {
+    try {
+      const response = await axios.get('/api/sessions/online');
+      const userId = response.data.user_id;
+      return userId;
+    } catch (error) {
+      console.error("Error al obtener el user_id", error);
+      return null;
     }
   };
 
@@ -69,13 +78,13 @@ const Provider = ({ children }) => {
       value={{
         isAdmin,
         isUser,
-        adminAction, // Exponer la acción especial del administrador
-
+        adminAction,
+        getUserId, // Exponemos la función getUserId en el contexto
       }}
     >
       {children}
-      </Context.Provider>
+    </Context.Provider>
   );
 };
 
-export { Context, Provider};
+export { Context, Provider };

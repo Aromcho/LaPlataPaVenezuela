@@ -1,124 +1,69 @@
-/* Estilo para el hero */
-.hero-section {
-    background-image: url('./fondo.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 90vh;
-    position: relative;
-}
-
-.hero-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.671); /* Capa oscura */
-    z-index: 1;
-}
-
-.hero-section > * {
-    position: relative;
-    z-index: 2;
-}
-
-/* Estilos para la calculadora en el hero */
-.calculadora-hero {
-    background-color: rgba(255, 255, 255, 0.3); /* Fondo semitransparente */
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
-    background-color: #0033AB;
-    color: #F7D117;
-}
-
-.btn-primary:hover {
-    background-color: #CF142B;
-    color: white;
-}
-
-.section-title {
-    color: #0033AB;
-}
-
-.section-description {
-    color: #333;
-    line-height: 1.6;
-}
-
 /* Estilos generales */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.hero-section {
+  padding: 20px;
+}
+
+/* Sección de pasos */
+ /* Sección de pasos */
+ .pasos-section {
+  background-color: rgb(255, 255, 255); /* Fondo negro transparente */
+  padding: 20px;
+  width: 100%; /* Aumenta el ancho para pantallas pequeñas */
+  text-align: center; /* Asegura que todo el texto esté centrado */
+  color: black;
+}
+
+.pasos-container {
+  display: flex;
+  justify-content: space-between; /* Espacio uniforme entre los elementos */
+  align-items: flex-start; /* Alineación vertical al principio */
+  margin: 10px 0; /* Espacio entre el título y el contenido */
+}
+
+.paso {
+  flex: 1; /* Cada "paso" ocupa espacio igual */
+  text-align: center;
+  margin: 10px; 
+  color: black; /* Para que el texto sea visible sobre el fondo oscuro */
+}
+
+.paso-img {
+  width: 100%; /* Las imágenes ocupan el 100% del ancho del contenedor */
+  max-width: 120px; /* Mantiene un tamaño máximo */
+  border-radius: 5px;
+}
+
+/* Nota de seguridad */
+.nota-seguridad {
+  margin-top: 20px;
+  color: lightgray;
+  text-align: center;
+}
+
+/* Estilo del footer */
 .footer {
-    background-color: #0033AB;
-    color: #F7D117;
-    text-align: center;
+  text-align: center;
+  color: white;
 }
 
-.quienes-somos-section {
-    background: #f8f9fa;
-    padding: 60px 0;
-}
-.calculadora-section {
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    padding: 30px;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+/* Media Queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .pasos-container {
+    flex-direction: column; /* Apila los pasos verticalmente en pantallas pequeñas */
+    align-items: center; /* Centra los pasos */
+  }
 
-.section-title {
-    color: #0033AB;
-    margin-bottom: 20px;
-    text-align: center;
-}
+  .paso {
+    width: 80%; /* Aumenta el ancho de los pasos en pantallas pequeñas */
+    margin: 5px 0; /* Ajusta el margen */
+  }
 
-.form-group label {
-    font-weight: bold;
-    color: #333;
-}
-
-.form-control {
-    border-radius: 20px;
-    padding: 10px;
-}
-
-.btn-primary {
-    background-color: #0033AB;
-    color: #F7D117;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 30px;
-    font-weight: bold;
-}
-
-.btn-primary:hover {
-    background-color: #CF142B;
-    color: white;
-}
-
-/* Face.css */
-.bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('./img/fondo.webp');
-    background-size: cover;
-    background-position: center;
-    filter: blur(5px);
-    z-index: -1;
-}
-
-.capa {
-    background-color: #000000c2;
-}
-
-header > * {
-    position: relative;
-    z-index: 2;
+  .nota-seguridad {
+    font-size: 0.9em; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+  }
 }
