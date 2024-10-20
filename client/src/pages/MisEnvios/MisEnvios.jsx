@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import OrdersList from './OrdersList/OrdersList';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 import './MisEnvios.css'; // Archivo CSS para estilos personalizados
 
 const MisEnvios = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState(null);
+  const navigate = useNavigate();
 
   // Obtener el usuario actual
   useEffect(() => {
@@ -13,13 +16,29 @@ const MisEnvios = () => {
       try {
         const response = await fetch('/api/sessions/online');
         const data = await response.json();
-        setUserId(data.user_id);
+
+        if (data.isOnline) {
+          setUserId(data.user_id);
+        } else {
+          // Mostrar el SweetAlert si no está logueado
+          Swal.fire({
+            title: 'No estás logueado',
+            text: 'Para ver tus envíos, inicia sesión.',
+            icon: 'warning',
+            confirmButtonText: 'Iniciar sesión',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Redirigir a la página de inicio de sesión
+              navigate('/login');
+            }
+          });
+        }
       } catch (error) {
         console.error('Error fetching user:', error);
       }
     };
     fetchUserId();
-  }, []);
+  }, [navigate]);
 
   // Obtener las órdenes del usuario
   useEffect(() => {
