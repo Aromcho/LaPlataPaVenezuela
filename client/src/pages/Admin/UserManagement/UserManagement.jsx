@@ -1,8 +1,10 @@
+// UserManagement.js
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Row, Col, Spinner, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Card, Button, Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import axios from 'axios';
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
 import Avatar from '@mui/material/Avatar';
+import Skeleton from '@mui/material/Skeleton';
 import './UserManagement.css'; // Archivo de estilos personalizado
 
 const UserManagement = () => {
@@ -26,14 +28,33 @@ const UserManagement = () => {
     fetchUsers();
   }, []);
 
-  if (isLoading) return (
-    <div className="loading-container">
-      <Spinner animation="border" variant="primary" />
-      <p>Cargando usuarios...</p>
-    </div>
-  );
-  
-  if (error) return <div className="error-container">Error al cargar los usuarios: {error}</div>;
+  if (isLoading) {
+    // Mostrar Skeletons mientras se cargan los datos
+    return (
+      <div className="user-management-container">
+        <h2 className="section-title">Gestión de Usuarios</h2>
+        <Row>
+          {[1, 2, 3].map((index) => (
+            <Col key={index} md={4} className="mb-4">
+              <Card className="custom-card">
+                <Card.Body className="text-center">
+                  <Skeleton variant="circular" width={80} height={80} style={{ margin: '0 auto 20px' }} />
+                  <Skeleton variant="text" width="60%" height={30} />
+                  <Skeleton variant="text" width="80%" />
+                  <Skeleton variant="text" width="80%" />
+                  <Skeleton variant="rectangular" width="100%" height={40} style={{ marginTop: '20px' }} />
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="error-container">Error al cargar los usuarios: {error}</div>;
+  }
 
   return (
     <div className="user-management-container">
