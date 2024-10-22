@@ -1,8 +1,10 @@
+// OrderManagement.js
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Row, Col, Tooltip, OverlayTrigger, Spinner } from 'react-bootstrap';
+import { Card, Button, Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { PencilSquare, Trash, Eye } from 'react-bootstrap-icons';
 import { Modal } from '@mui/material';
 import StepperAdmin from '../Stepper/StepperAdmin';
+import Skeleton from '@mui/material/Skeleton';
 import './OrderManagement.css'; // Estilos personalizados
 
 const OrderManagement = () => {
@@ -66,7 +68,28 @@ const OrderManagement = () => {
     }
   };
 
-  if (isLoading) return <div className="spinner-container"><Spinner animation="border" /></div>;
+  if (isLoading) {
+    // Mostrar el Skeleton mientras se cargan los datos
+    return (
+      <div className="order-management-container">
+        <h2 className="section-title">Gestión de Órdenes</h2>
+        <Row>
+          {[1, 2, 3].map((index) => (
+            <Col md={4} key={index} className="mb-4">
+              <Card className="order-card">
+                <Card.Body>
+                  <Skeleton variant="text" width={150} height={30} />
+                  <Skeleton variant="text" width={200} height={20} />
+                  <Skeleton variant="text" width={100} height={20} />
+                  <Skeleton variant="rectangular" width="100%" height={100} />
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </div>
+    );
+  }
 
   return (
     <div className="order-management-container">
@@ -113,8 +136,11 @@ const OrderManagement = () => {
       {selectedOrder && (
         <Modal open={showModal} onClose={handleCloseModal}>
           <div className="modal-content">
-            {/* Pasamos el estado de la orden y su ID como props, y manejamos el cambio de estado */}
-            <StepperAdmin state={selectedOrder.state} oid={selectedOrder._id} onStateChange={handleStateChange} />
+            {isLoading ? (
+              <Skeleton variant="rectangular" width="100%" height={400} />
+            ) : (
+              <StepperAdmin state={selectedOrder.state} oid={selectedOrder._id} onStateChange={handleStateChange} />
+            )}
           </div>
         </Modal>
       )}
