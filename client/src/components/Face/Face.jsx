@@ -1,4 +1,5 @@
-import React from 'react';
+// Face.jsx
+import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
 import './Face.css'; 
 import Calculadora from '../Calculadora/Calculadora.jsx';
@@ -6,8 +7,14 @@ import ItemListContainer from '../ItemListContainer/ItemListContainer.jsx';
 import Testimonials from '../Testimonials/Testimonials.jsx';
 import ContactForm from '../ContactForm/ContactForm.jsx';
 import PasosEnvioDinero from '../PasosEnvioDinero/PasosEnvioDinero.jsx';
+import ChatBubble from '../ChatBubble/ChatBubble.jsx';
+import ChatModal from '../ChatModal/ChatModal.jsx';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+
 
 const Face = () => {
+  const [showChatModal, setShowChatModal] = useState(false);
+
   return (
     <div
       style={{
@@ -50,6 +57,21 @@ const Face = () => {
       <footer className="footer p-3">
         <p>Derechos reservados © 2023 La Plata pa' Venezuela</p>
       </footer>
+      
+      <div className="floating-icons">
+        <a href="https://wa.me/584247249758" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
+          <WhatsAppIcon style={{ fontSize: 40 }} />
+        </a>
+      </div>
+
+      {/* Burbuja de Chat */}
+      <ChatBubble onClick={() => {
+        console.log("Burbuja de chat clickeada"); // Verifica que esto se muestre en la consola
+        setShowChatModal(true);
+      }} />
+
+      {/* Modal de Chat */}
+      <ChatModal show={showChatModal} onHide={() => setShowChatModal(false)} />
     </div>
   );
 };

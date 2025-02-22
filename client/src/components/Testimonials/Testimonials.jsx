@@ -16,17 +16,17 @@ const Testimonials = () => {
       id: 2,
       name: 'Maria Rodriguez',
       city: 'Madrid, España',
-      comment: 'Legz hizo que enviar dinero a mi familia en América Latina fuera fácil y sin complicaciones.',
+      comment: 'plata pa venezuela hizo que enviar dinero a mi familia en América Latina fuera fácil y sin complicaciones.',
     },
   ];
 
   return (
-    <Container className="testimonials-container mt-5">
-      <h2 className="text-center mb-4">Testimonios de Clientes</h2>
+    <div className="testimonials-container">
+      <h2 className="text-center mb-4 py-3">Testimonios de Clientes</h2>
       <Row xs={1} md={2} className="g-4">
         {testimonials.map((testimonial) => (
-          <Col key={testimonial.id}>
-            <Card className="testimonial-card p-3">
+          <Col className="" key={testimonial.id}>
+            <Card className="testimonial-card">
               <Card.Body>
                 <Card.Text>{testimonial.comment}</Card.Text>
                 <Card.Subtitle className="mb-2 text-muted">
@@ -37,7 +37,7 @@ const Testimonials = () => {
           </Col>
         ))}
       </Row>
-    </Container>
+    </div>
   );
 };
 

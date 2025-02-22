@@ -27,7 +27,7 @@ function App() {
           <Route path="/envios" element={<MisEnvios />} />
           <Route path="/checkout" element={<Checkout />} /> {/* Nueva ruta para CheckoutForm */}
         </Routes>
-        <ChatBubble />
+        {/*<ChatBubble />*/}
       </BrowserRouter>
     </Provider>
   );

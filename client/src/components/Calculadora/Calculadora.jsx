@@ -67,7 +67,6 @@ const Calculadora = () => {
 
     return (
         <div className="container w-75">
-            <h2 className="section-title text-center text-white">Calculadora de Cambio</h2>
             <div className="row">
                 <div className="col-md-6">
                     <div className="form-group">
