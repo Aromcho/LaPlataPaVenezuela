@@ -1,36 +1,62 @@
 /* Estilo para el hero */
 .hero-section {
-    background-image: url('./fondo.jpg');
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    justify-content: center;
     height: 90vh;
     position: relative;
 }
 
-.hero-section::before {
+
+
+.titulo-hero {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.titulo-hero h1 {
+    color: #79cbdc;
+    font-family: 'Futura Condensed', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
+
+}
+.titulo-hero p {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-top: 20px;
+}
+/* Estilos para la calculadora en el hero */
+.calculadora-hero {
+    width: 40vw;
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo semitransparente */
+    padding: 20px;
+    margin: 100px 20px 20px 20px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1; /* Para que el contenido esté por encima */
+}
+
+.calculadora-hero::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.671); /* Capa oscura */
-    z-index: 1;
+    border-radius: 20px; /* Misma curvatura del borde */
+    padding: 7px; /* Espesor del borde */
+    background: linear-gradient(to bottom, #79cbdc, #ffffff);
+    z-index: -1;
+    mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
+    -webkit-mask-composite: xor;
 }
 
-.hero-section > * {
-    position: relative;
-    z-index: 2;
-}
-
-/* Estilos para la calculadora en el hero */
-.calculadora-hero {
-    background-color: rgba(255, 255, 255, 0.3); /* Fondo semitransparente */
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 .btn-primary {
     background-color: #0033AB;
@@ -107,7 +133,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('./img/fondo.webp');
     background-size: cover;
     background-position: center;
     filter: blur(5px);

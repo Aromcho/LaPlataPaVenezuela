@@ -56,14 +56,14 @@ const NavBar = () => {
         <>
           <h5 className='text-white m-1'>Hola Administrador</h5>
           <Dropdown className="ms-1">
-            <Dropdown.Toggle variant="dark" id="dropdown-basic">
+            <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Perfil
             </Dropdown.Toggle>
 
-            <Dropdown.Menu align="end" variant="dark">
+            <Dropdown.Menu align="end" variant="danger">
               <Dropdown.Item as="div">
                 <BioCard /> {/* Aquí se muestra el componente BioCard */}
-                <Button className=" w-100 mt-2" as={Link} to="/" onClick={logout} variant="dark">
+                <Button className=" w-100 mt-2" as={Link} to="/" onClick={logout} variant="danger">
                   Cerrar sesión
                 </Button>
               </Dropdown.Item>
@@ -74,7 +74,7 @@ const NavBar = () => {
     } else {
       return (
         <div className="auth-buttons">
-          <Button className="ms-1" as={Link} to="/user/login" variant="dark">
+          <Button className="ms-1" as={Link} to="/user/login" variant="danger">
             Iniciar sesión
           </Button>
         </div>
@@ -84,10 +84,10 @@ const NavBar = () => {
 
   return (
     
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <nav className="navbar navbar-expand-lg navbar-dark">
     <div className="container ">
       <a className="navbar-brand" href="#">
-        <img src="./img/LAPLATAPAVENEZUELA.png" alt="Venezuela" className="img-fluid rounded-circle" style={{ maxWidth: '60px' }} />
+        <img src="./img/LAPLATAPAVENEZUELA.png" alt="Venezuela" className="img-fluid" style={{ maxWidth: '350px' }} />
       </a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>

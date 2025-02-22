@@ -18,10 +18,15 @@
 
 .form-control {
     border-radius: 20px; /* Bordes redondeados de los inputs */
-    border: 1px solid #ced4da; /* Color del borde */
+    border: none; /* Color del borde */
     padding: 10px 15px; /* Espaciado interno del input */
 }
-
+.tu-envias {
+    font-family: 'Futura Condensed', sans-serif;
+    color: #858383 !important;
+    font-size: 18px;
+    font-weight: 700;
+}
 .btn-primary {
     background-color: #007bff; /* Fondo azul para los botones */
     border: none; /* Sin borde para los botones */
@@ -40,6 +45,23 @@
 .img-boton {
     width: 25px; /* Tamaño de los íconos de los botones */
 }
+.select-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.flag-icon {
+    width: 24px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.currency-select {
+    flex-grow: 1;
+    padding-left: 10px;
+}
+
 
 /* Estilos Responsivos */
 @media (max-width: 768px) {
