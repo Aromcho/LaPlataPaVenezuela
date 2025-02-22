@@ -1,11 +1,10 @@
 /* NavBar.css */
 .navbar {
-    background-color: #0033AB;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 
 .navbar .nav-link {
-    color: #ffffff !important;
+    color: #F7D117;
     transition: transform 0.5s ease, color 0.5s ease;
 }
 
@@ -22,37 +21,6 @@
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='%23F7D117' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 }
 
-/* Ajuste para el logo */
-.navbar-brand {
-    margin-right: 2rem; /* Añadir margen para el logo */
-}
-
-/* Alineación de elementos en el navbar */
 .navbar-collapse {
-    justify-content: flex-start; /* Alinear a la izquierda */
-}
-
-/* Estilo para el contenedor de botones de autenticación */
-.auth-buttons {
-    margin-left: auto; /* Para que los botones de autenticación se alineen a la derecha */
-}
-
-/* Estilos en dispositivos móviles */
-@media (max-width: 768px) {
-    .navbar-collapse {
-        justify-content: flex-start; /* Alinear a la izquierda */
-    }
-    .nav-link {
-        margin-right: 0.5rem; /* Espacio entre los enlaces */
-    }
-}
-
-.text-white {
-    color: white !important; /* Asegurar que el texto sea blanco */
-}
-
-/* Estilo para el texto de "Hola Administrador" */
-h6.text-white {
-    font-size: 0.85rem; /* Cambia el tamaño de la fuente a un tamaño más pequeño */
-    margin: 0; /* Remueve el margen adicional */
+    justify-content: around;
 }

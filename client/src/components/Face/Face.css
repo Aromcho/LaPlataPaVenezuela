@@ -1,93 +1,149 @@
-/* Estilos generales */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+/* Estilo para el hero */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  position: relative;
 }
 
-.hero-section {
-  padding: 20px;
-}
-/* Flotador de iconos sociales */
-.floating-icons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+
+
+.titulo-hero {
+  width: 40vw;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  align-items: start;
 }
+.titulo-hero h1 {
+  color: #79cbdc;
+  font-family: 'Futura Condensed', sans-serif;
+  font-size: 5rem;
+  font-weight: 900;
 
-.floating-icons a {
-  background-color: #25d366; /* Color para WhatsApp */
-  color: white;
-  padding: 10px;
-  border-radius: 50px;
-  font-size: 24px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s;
 }
-
-.floating-icons a:hover {
-  color: white;
-  transform: scale(1.1);
-}
-/* Sección de pasos */
- /* Sección de pasos */
- .pasos-section {
-  background-color: rgb(255, 255, 255); /* Fondo negro transparente */
-  padding: 20px;
-  width: 100%; /* Aumenta el ancho para pantallas pequeñas */
-  text-align: center; /* Asegura que todo el texto esté centrado */
-  color: black;
-}
-
-.pasos-container {
-  display: flex;
-  justify-content: space-between; /* Espacio uniforme entre los elementos */
-  align-items: flex-start; /* Alineación vertical al principio */
-  margin: 10px 0; /* Espacio entre el título y el contenido */
-}
-
-.paso {
-  flex: 1; /* Cada "paso" ocupa espacio igual */
-  text-align: center;
-  margin: 10px; 
-  color: black; /* Para que el texto sea visible sobre el fondo oscuro */
-}
-
-.paso-img {
-  width: 100%; /* Las imágenes ocupan el 100% del ancho del contenedor */
-  max-width: 120px; /* Mantiene un tamaño máximo */
-  border-radius: 5px;
-}
-
-/* Nota de seguridad */
-.nota-seguridad {
+.titulo-hero p {
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 400;
   margin-top: 20px;
-  color: lightgray;
-  text-align: center;
+}
+/* Estilos para la calculadora en el hero */
+.calculadora-hero {
+  width: 40vw;
+  background-color: rgba(255, 255, 255, 0.3); /* Fondo semitransparente */
+  padding: 20px;
+  margin: 100px 20px 20px 20px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 1; /* Para que el contenido esté por encima */
 }
 
-/* Estilo del footer */
-.footer {
-  text-align: center;
+.calculadora-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px; /* Misma curvatura del borde */
+  padding: 7px; /* Espesor del borde */
+  background: linear-gradient(to bottom, #79cbdc, #ffffff);
+  z-index: -1;
+  mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
+  -webkit-mask-composite: xor;
+}
+
+
+.btn-primary {
+  background-color: #0033AB;
+  color: #F7D117;
+}
+
+.btn-primary:hover {
+  background-color: #CF142B;
   color: white;
 }
 
-/* Media Queries para pantallas más pequeñas */
-@media (max-width: 768px) {
-  .pasos-container {
-    flex-direction: column; /* Apila los pasos verticalmente en pantallas pequeñas */
-    align-items: center; /* Centra los pasos */
-  }
+.section-title {
+  color: #0033AB;
+}
 
-  .paso {
-    width: 80%; /* Aumenta el ancho de los pasos en pantallas pequeñas */
-    margin: 5px 0; /* Ajusta el margen */
-  }
+.section-description {
+  color: #333;
+  line-height: 1.6;
+}
 
-  .nota-seguridad {
-    font-size: 0.9em; /* Tamaño de fuente más pequeño en pantallas pequeñas */
-  }
+/* Estilos generales */
+.footer {
+  background-color: #0033AB;
+  color: #F7D117;
+  text-align: center;
+}
+
+.quienes-somos-section {
+  background: #f8f9fa;
+  padding: 60px 0;
+}
+.calculadora-section {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  color: #0033AB;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #333;
+}
+
+.form-control {
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.btn-primary {
+  background-color: #0033AB;
+  color: #F7D117;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #CF142B;
+  color: white;
+}
+
+/* Face.css */
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+.capa {
+  background-color: #000000c2;
+}
+
+header > * {
+  position: relative;
+  z-index: 2;
 }

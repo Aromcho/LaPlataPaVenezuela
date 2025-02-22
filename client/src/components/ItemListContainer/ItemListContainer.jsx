@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Nav, Button, ButtonGroup } from 'react-boots
 import './ItemListContainer.css';
 import ItemList from '../ItemList/ItemList.jsx';
 import axios from 'axios';
-import "./ItemListContainer.css"; // Importación del archivo CSS
+
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,7 +38,7 @@ const ItemListContainer = () => {
 
   return (
     <section id="paises-monedas" class="paises-monedas-section ">
-      <img src="./img/LAPLATAPAVENEZUELA.png" alt="Fondo" className="bg-image-list" />
+      
         <div class="capa">
         <h2 class="text-center p-5">tasa del dia</h2>
       <ItemList products={products} />
