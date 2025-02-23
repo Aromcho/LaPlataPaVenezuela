@@ -26,36 +26,18 @@ const Face = () => {
       </header>
 
       <main>
-        <section id="quienes-somos" className="quienes-somos-section">
-          <div className="container">
-            <h2 className="section-title">Quiénes Somos</h2>
-            <div className="row">
-              <div className="col-md-6">
-                <img
-                  src="./img/quienes-somos.jpg"
-                  alt="Sobre Nosotros"
-                  className="img-fluid rounded"
-                />
-              </div>
-              <div className="col-md-6 ">
-                <p className="section-description">
-                  Somos una empresa dedicada a facilitar el envío de remesas a
-                  Venezuela, ofreciendo un servicio confiable, rápido y seguro.
-                  Nuestro compromiso es brindar la mejor experiencia a nuestros
-                  clientes, asegurando que su dinero llegue a su destino de
-                  manera eficiente.
-                </p>
-                <a href="#contacto" className="btn btn-primary">
-                  <img
-                    src="./img/whatsapp-AwvrBaRrObFNPLxM.avif"
-                    className=""
-                    alt=""
-                  />{" "}
-                  Contáctanos
-                </a>
-              </div>
-            </div>
-          </div>
+      <section
+        id="quienes-somos"
+        className="quienes-somos-section"
+        style={{
+          backgroundImage: `url("./img/paisaje.png")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          padding: '60px 0'
+        }}
+      >
+          <h2 className='text-center'>¡¡CON NOSOTROS, TU DINERO LLEGA SEGURO DONDE QUIÉRA QUE LO NECESITES!!</h2>
         </section>
         <section id="servicios" className="servicios-section">
           <div className=" w-100 d-flex justify-content-center mt-5">

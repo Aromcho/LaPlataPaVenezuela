@@ -85,8 +85,33 @@
 }
 
 .quienes-somos-section {
-  background: #f8f9fa;
-  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-image: url("./img/paisaje.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 60px 20px;
+}
+.quienes-somos-section h2 {
+  position: relative;
+  padding: 160px;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.quienes-somos-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, #ffffff, #ffffff9d, #ffffff9d);
 }
 .calculadora-section {
   background-color: #f8f9fa;
