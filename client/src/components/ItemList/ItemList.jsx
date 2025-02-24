@@ -1,25 +1,22 @@
-import React, { useEffect, useContext } from "react";
-import { Nav, Container, ButtonGroup, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from "react";
 import Item from "../Item/Item.jsx";
+import { Button } from "react-bootstrap";
+import "./ItemList.css";
 
-const ItemList = ({
-  products,
-  category,
-  page,  
-}) => {
-  useEffect(() => {}, [category, page]);
-
-
-    
+const ItemList = ({ products }) => {
   return (
-    <div className="container">
-              <div className="card-paises row">
-              {products.map((product) => (
-                <Item key={product._id} product={product} />
-              ))}
-              </div>
-            </div>
+    <div className="container ">
+      <div className="item-list-grid">
+        {products.map((product) => (
+          <Item key={product._id} product={product} />
+        ))}
+      </div>
+      <div className="buttoms-cont">
+        <Button className="btn-enviar" variant="danger"> ¡Enviar dinero! </Button>
+        <Button className="btn-calcular" variant="light"> Calcular mi envío </Button>
+      </div>
+      
+    </div>
   );
 };
 

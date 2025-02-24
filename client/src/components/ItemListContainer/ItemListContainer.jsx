@@ -38,11 +38,7 @@ const ItemListContainer = () => {
 
   return (
     <section id="paises-monedas" class="paises-monedas-section ">
-      
-        <div class="capa">
-        <h2 class="text-center p-5">tasa del dia</h2>
       <ItemList products={products} />
-      </div>
     </section>
   );
 };

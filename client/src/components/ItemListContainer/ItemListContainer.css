@@ -1,6 +1,5 @@
 .paises-monedas-section {
-  background-size: cover;
-  background-position: center;
+  background-color: #F7D117;
   
   color: #fff; /* Cambia el color del texto a blanco para mejor contraste */
 }
@@ -13,9 +12,7 @@
   object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
   z-index: -2; /* Coloca la imagen detrás del contenido */
 }
-.capa {
-  background-color: #000000c2;
-}
+
 /* ItemListContainer.css */
 .quienes-somos-section {
   background: #f8f9fa;

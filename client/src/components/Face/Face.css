@@ -88,7 +88,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 70vh;
   background-image: url("./img/paisaje.png");
   background-size: cover;
   background-position: center;
@@ -98,10 +98,10 @@
 }
 .quienes-somos-section h2 {
   position: relative;
-  padding: 160px;
+  padding: 140px;
   color: #ffffff;
-  font-size: 2.5rem;
-  font-weight: 900;
+  font-size: 3.5rem;
+  font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .quienes-somos-section::before {
@@ -111,7 +111,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom, #ffffff, #ffffff9d, #ffffff9d);
+  background: linear-gradient(to bottom, #ffffff, #ffffff9d, #ffffff9d,#F7D117 );
 }
 .calculadora-section {
   background-color: #f8f9fa;
