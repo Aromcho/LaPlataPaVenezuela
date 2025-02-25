@@ -16,7 +16,7 @@
   align-items: start;
 }
 .titulo-hero h1 {
-  color: #79cbdc;
+  color: #39AFC1;
   font-family: 'Futura Condensed', sans-serif;
   font-size: 5rem;
   font-weight: 900;
@@ -49,7 +49,7 @@
   bottom: 0;
   border-radius: 20px; /* Misma curvatura del borde */
   padding: 7px; /* Espesor del borde */
-  background: linear-gradient(to bottom, #79cbdc, #ffffff);
+  background: linear-gradient(to bottom, #39AFC1, #ffffff);
   z-index: -1;
   mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
   mask-composite: exclude;

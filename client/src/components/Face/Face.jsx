@@ -2,12 +2,10 @@ import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import './Face.css';
 import { Typography } from '@mui/material';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import InstagramIcon from '@mui/icons-material/Instagram';
+import ProContra from '../ProContra/ProContra.jsx';
 import Calculadora from '../Calculadora/Calculadora.jsx';
 import ItemListContainer from '../ItemListContainer/ItemListContainer.jsx';
 import Testimonials from '../Testimonials/Testimonials.jsx';
-import ContactForm from '../ContactForm/ContactForm.jsx';
 
 const Face = () => {
   return (
@@ -40,8 +38,8 @@ const Face = () => {
           <h2 className='text-center'>¡¡CON NOSOTROS, TU DINERO LLEGA SEGURO DONDE QUIÉRA QUE LO NECESITES!!</h2>
         </section>
         <ItemListContainer />
+        <ProContra />
         <Testimonials />
-        <ContactForm />
       </main>
 
       <footer className="footer p-3">

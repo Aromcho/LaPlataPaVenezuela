@@ -1,0 +1,82 @@
+.pro-contra {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    position: relative;
+    padding: 50px 0;
+}
+
+.pro h3 {
+    color: #C43434;
+    font-family: 'Futura Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+
+.contra h3 {
+    color: #39AFC1;
+    font-family: 'Futura Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+
+/* Lista de problemas y soluciones */
+.pro-list, .contra-list {
+    border-left: 3px solid gray;
+    width: 40vw;
+}
+
+.pro-list ul, .contra-list ul {
+    list-style: none;
+    padding-left: 0;
+    position: relative;
+}
+
+/* Estilos para los elementos de la lista */
+.pro-list li,
+.contra-list li {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #333;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 85%;
+}
+.list-item {
+    display: flex;
+    margin-bottom: 20px;
+}
+/* Iconos de "X" y "✔" con círculo */
+.icon-circle {
+    position: relative;
+    right: 15px;
+    top: 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* Color rojo para las X */
+.icon-circle.red {
+    background-color: #ffffff;
+    color: #C43434 ;
+}
+
+/* Color azul turquesa para los check */
+.icon-circle.blue {
+    background-color: #ffffff;
+    color: #39AFC1;
+}

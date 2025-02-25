@@ -6,10 +6,12 @@
     margin-top: 20px; /* Separación superior */
 }
 
-.section-title {
-    color: #ffffff; /* Color oscuro para el texto del título */
+.section-title-calculator {
+    font-family: 'Futura Condensed', sans-serif;
+    color: black; /* Color oscuro para el texto del título */
     margin-bottom: 30px; /* Espaciado inferior del título */
-    text-align: center; /* Alinear el título al centro */
+    text-align: start; /* Alinear el título al centro */
+    font-weight: 700;
 }
 
 .form-group {

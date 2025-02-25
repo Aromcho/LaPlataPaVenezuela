@@ -5,7 +5,9 @@
   margin: 0 auto;
   text-align: center;
 }
-
+body {
+  overflow-x: hidden;
+}
 
 
 .logo {
