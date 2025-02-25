@@ -6,6 +6,9 @@ import ProContra from '../ProContra/ProContra.jsx';
 import Calculadora from '../Calculadora/Calculadora.jsx';
 import ItemListContainer from '../ItemListContainer/ItemListContainer.jsx';
 import Testimonials from '../Testimonials/Testimonials.jsx';
+import SeguridadSeccion from '../SeguridadSeccion/SeguridadSeccion.jsx';
+import Recarga from '../Recarga/Recarga.jsx';
+import Servicios from '../Servicios/Servicios.jsx';
 
 const Face = () => {
   return (
@@ -39,6 +42,9 @@ const Face = () => {
         </section>
         <ItemListContainer />
         <ProContra />
+        <SeguridadSeccion />
+        <Recarga />
+        <Servicios />
         <Testimonials />
       </main>
 

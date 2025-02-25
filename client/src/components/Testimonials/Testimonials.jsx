@@ -22,21 +22,8 @@ const Testimonials = () => {
 
   return (
     <div className="testimonials-container">
-      <h2 className="text-center mb-4 py-3">Testimonios de Clientes</h2>
-      <Row xs={1} md={2} className="g-4">
-        {testimonials.map((testimonial) => (
-          <Col className="" key={testimonial.id}>
-            <Card className="testimonial-card">
-              <Card.Body>
-                <Card.Text>{testimonial.comment}</Card.Text>
-                <Card.Subtitle className="mb-2 text-muted">
-                  {testimonial.name}, {testimonial.city}
-                </Card.Subtitle>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      <h2 className="text-center mb-4 py-3">LO QUE DICEN QUIENES CONFIAN EN NOSOTROS</h2>
+      
     </div>
   );
 };

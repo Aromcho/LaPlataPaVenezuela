@@ -1,0 +1,77 @@
+.recarga-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.metodos-container {
+    width: 78vw ;
+
+    border: 1px solid gray;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    align-items: center;
+    margin-top: 50px;
+    padding: 20px 0;
+    
+}
+
+/* Contenedor de los tres métodos */
+.metodos-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Estilos de cada método */
+.metodos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 10px 100px;
+    margin: 10px 0;
+}
+
+.metodos.red {
+    color: red;
+    border-left: 1px solid gray;
+}
+
+.metodos.yellow {
+    color: yellow;
+    border-right: 1px solid gray;
+}
+
+.metodos.blue {
+    color: #39AFC1;
+}
+
+.metodo-logo {
+    width: 100px;
+    height: 100px;
+}
+
+.metodo-logo-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+/* Contenedor del botón alineado abajo */
+.boton-container {
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid gray;
+    margin-top: 30px;
+    padding: 20PX;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
