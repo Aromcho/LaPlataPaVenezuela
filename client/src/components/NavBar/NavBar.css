@@ -4,13 +4,13 @@
 }
 
 .navbar .nav-link {
-    color: #F7D117;
+    color: #000000 !important;
     transition: transform 0.5s ease, color 0.5s ease;
 }
 
 .navbar .nav-link:hover {
     transform: scale(1.1);
-    color: #ffffff;
+    color: #000000;
 }
 
 .navbar-toggler {
@@ -21,6 +21,6 @@
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='%23F7D117' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 }
 
-.navbar-collapse {
-    justify-content: around;
+.navbar-collapse .navbar-nav{
+    justify-content: space-around;
 }

@@ -64,6 +64,15 @@
     color: black;
 }
 
+.metodo-logo-cont-b {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
 /* Contenedor del botón alineado abajo */
 .boton-container {
     width: 100%;
