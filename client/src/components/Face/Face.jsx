@@ -9,6 +9,8 @@ import Testimonials from '../Testimonials/Testimonials.jsx';
 import SeguridadSeccion from '../SeguridadSeccion/SeguridadSeccion.jsx';
 import Recarga from '../Recarga/Recarga.jsx';
 import Servicios from '../Servicios/Servicios.jsx';
+import FAQ from '../FAQ/FAQ.jsx';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const Face = () => {
   return (
@@ -16,9 +18,14 @@ const Face = () => {
       <header className="hero-section p-4">
         <div className='titulo-hero'>
           <h1 className="">Envía dinero en minutos</h1>
-          <p className="">
+          <p className="hero-p">
             Con tarifas justas, transferencias inmediatas y un trato personalizado. Te ofrecemos tranquilidad a ti y a tus seres queridos.
           </p>
+          <img className='w-50' src="./img/raya_verde.png" alt="" />
+          <h2 className='mt-2'>¡PROTEGE A LOS TUYOS!</h2>
+          <button className='button-enviar'>
+          <FaWhatsapp className='whatsapp-icon'/> haz tu enviuo ahora
+            </button>
         </div>
 
         <div className="calculadora-hero">
@@ -46,6 +53,7 @@ const Face = () => {
         <Recarga />
         <Servicios />
         <Testimonials />
+        <FAQ />
       </main>
 
       <footer className="footer p-3">

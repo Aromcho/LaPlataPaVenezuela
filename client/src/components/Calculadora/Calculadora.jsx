@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./Calculadora.css";
 
 const Calculadora = () => {
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState('100');
     const [fromCurrency, setFromCurrency] = useState('Bs');
     const [toCurrency, setToCurrency] = useState('USD');
     const [result, setResult] = useState('0.00');
@@ -51,16 +51,16 @@ const Calculadora = () => {
     }, [amount, fromCurrency, toCurrency, exchangeRates]);
 
     return (
-        <div className="container w-75">
+        <div className="container">
             <h2 className="section-title-calculator">Calcula tu envio</h2>
-            <div className="row">
-                <div className="col-md-6">
+            <div className="columna-envio">
+                <div className="col-md-6 name-coin">
                     <div className="form-group">
                         <label className='tu-envias' htmlFor="amount">Tu envías</label>
                         <input
                             type="number"
                             id="amount"
-                            className="form-control"
+                            className="form-control amount-input"
                             placeholder="Ingrese la cantidad"
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
@@ -71,14 +71,14 @@ const Calculadora = () => {
                         <input
                             type="text"
                             id="result"
-                            className="form-control"
+                            className="form-control amount-input"
                             readOnly
                             value={result}
                         />
                     </div>
                 </div>
-                <div className="col-md-6">
-                    <div className="form-group">
+                <div className="col-md-6 name-coin"   >
+                    <div className="form-group name-coin-group">
                         <div className="select-container">
                             <img src={exchangeRates[toCurrency]?.imagen} alt={toCurrency} className="flag-icon" />
                             <select
@@ -96,7 +96,7 @@ const Calculadora = () => {
                         </div>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group name-coin-group">
                         <div className="select-container">
                             <img src={exchangeRates[fromCurrency]?.imagen} alt={fromCurrency} className="flag-icon" />
                             <select

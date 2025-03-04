@@ -23,11 +23,7 @@ const Item = ({ product }) => {
         <div className="metodo-pago">
           <h5>Método de pago</h5>
           <p>Transferencia o depósito bancario desde tu banco</p>
-          <div className="d-flex">
-            <Skeleton variant="rectangular" width={50} height={50} />
-            <Skeleton variant="rectangular" width={50} height={50} />
-            <Skeleton variant="rectangular" width={50} height={50} />
-          </div>
+          
         </div>
       </div>
     </div>

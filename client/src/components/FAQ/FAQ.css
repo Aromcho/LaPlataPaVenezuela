@@ -1,0 +1,83 @@
+.faq-cont {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.preguntas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.preguntas button {
+    position: relative;
+    z-index: 2;
+    width: 80%;
+    background-color: #39AFC1 !important;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.preguntas button:hover {
+    background-color: #2A7A8C !important;
+}
+
+.preguntas button svg {
+    width: 40px;
+    height: 40px;
+}
+
+.faq-text {
+    position: relative;
+    z-index: 1;
+    top: -20px;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid #39AFC1;
+    text-align: start;
+}
+
+@media (max-width: 768px) {
+    .faq-cont {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .preguntas {
+        padding: 15px;
+    }
+
+    .preguntas button {
+        width: 100%;
+        font-size: 18px;
+        padding: 8px 15px;
+    }
+
+    .preguntas button svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .faq-text {
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+}

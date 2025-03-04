@@ -28,6 +28,31 @@
   font-weight: 400;
   margin-top: 20px;
 }
+.button-enviar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25D366;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-enviar:hover {
+  background-color: #1EBE5B;
+  transform: scale(1.05);
+}
+
+.whatsapp-icon {
+  margin-right: 10px;
+  font-size: 22px;
+}
+
 /* Estilos para la calculadora en el hero */
 .calculadora-hero {
   width: 40vw;
@@ -58,19 +83,9 @@
 }
 
 
-.btn-primary {
-  background-color: #0033AB;
-  color: #F7D117;
-}
 
-.btn-primary:hover {
-  background-color: #CF142B;
-  color: white;
-}
 
-.section-title {
-  color: #0033AB;
-}
+
 
 .section-description {
   color: #333;
@@ -79,8 +94,8 @@
 
 /* Estilos generales */
 .footer {
-  background-color: #0033AB;
-  color: #F7D117;
+  background-color: #39AFC1;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -137,19 +152,7 @@
   padding: 10px;
 }
 
-.btn-primary {
-  background-color: #0033AB;
-  color: #F7D117;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 30px;
-  font-weight: bold;
-}
 
-.btn-primary:hover {
-  background-color: #CF142B;
-  color: white;
-}
 
 /* Face.css */
 .bg-image {
@@ -171,4 +174,37 @@
 header > * {
   position: relative;
   z-index: 2;
+}
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .titulo-hero, .calculadora-hero {
+    width: 90vw;
+    margin: 0 0 20px 0;
+  }
+
+  .hero-p {
+    display: none;
+  }
+  .titulo-hero h1 {
+    font-size: 3rem;
+  }
+
+  .titulo-hero p {
+    font-size: 1rem;
+  }
+
+  .quienes-somos-section {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .quienes-somos-section h2 {
+    font-size: 2.5rem;
+    padding: 80px 20px;
+  }
 }

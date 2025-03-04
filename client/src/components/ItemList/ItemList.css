@@ -23,3 +23,17 @@
     font-weight: 600;
     border-radius: 15px;
 }
+
+@media (max-width: 768px) {
+    .item-list-grid {
+        grid-template-columns: 1fr;
+    }
+    .buttoms-cont {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .btn-enviar, .btn-calcular {
+        padding: 10px 50px;
+        font-size: 20px;
+    }
+}

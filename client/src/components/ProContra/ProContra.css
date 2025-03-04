@@ -80,3 +80,30 @@
     background-color: #ffffff;
     color: #39AFC1;
 }
+
+@media (max-width: 768px) {
+    .pro-contra {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .pro-list, .contra-list {
+        width: 90vw;
+        border-left: none;
+    }
+
+    .pro-list ul, .contra-list ul {
+        padding-left: 20px;
+    }
+
+    .pro-list li, .contra-list li {
+        width: 100%;
+    }
+
+    .icon-circle {
+        right: 0;
+        top: 0;
+        margin-right: 10px;
+    }
+}

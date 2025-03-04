@@ -13,15 +13,25 @@
     text-align: start; /* Alinear el título al centro */
     font-weight: 700;
 }
-
+.columna-envio {
+    display: flex;
+    flex-direction: row;
+}
 .form-group {
-    margin-bottom: 20px; /* Separación entre grupos de formularios */
+    margin-bottom: 0 !important; /* Eliminar el margen inferior de los grupos de inputs */
 }
 
 .form-control {
     border-radius: 20px; /* Bordes redondeados de los inputs */
-    border: none; /* Color del borde */
+    border: none !important; /* Color del borde */
+    background: none !important; /* Color de fondo */
     padding: 10px 15px; /* Espaciado interno del input */
+}
+.amount-input {
+    font-family: 'Futura Condensed', sans-serif;
+    color: #000000 !important;
+    font-size: 28px;
+    font-weight: 900;
 }
 .tu-envias {
     font-family: 'Futura Condensed', sans-serif;
@@ -29,14 +39,25 @@
     font-size: 18px;
     font-weight: 700;
 }
-.btn-primary {
-    background-color: #007bff; /* Fondo azul para los botones */
-    border: none; /* Sin borde para los botones */
-    border-radius: 20px; /* Bordes redondeados */
-    padding: 10px 30px; /* Espaciado interno de los botones */
-    font-weight: bold; /* Texto en negrita */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para los botones */
-    transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
+.tu-envias-gost {
+    color: rgb(255, 255, 255) !important;
+}
+.name-coin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Futura Condensed', sans-serif;
+    color: #858383 !important;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.name-coin-group {
+    margin-top: 25px;
+    padding-left: 10px; ;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 20px;
 }
 
 .btn-primary:hover {
@@ -55,8 +76,9 @@
 
 .flag-icon {
     width: 24px;
-    height: 16px;
+    height: 24px;
     margin-right: 10px;
+    border-radius: 50%;
 }
 
 .currency-select {

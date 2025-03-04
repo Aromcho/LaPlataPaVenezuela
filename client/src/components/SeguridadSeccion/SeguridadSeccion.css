@@ -56,3 +56,26 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: scale(1.1); /* Aumenta un 10% el tamaño */
 }
+@media (max-width: 768px) {
+    .seguridad-section {
+        padding: 30px 20px;
+        margin: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .seguridad-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 30px;
+    }
+
+    .seguridad-titulo {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .btn-seguridad {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}
