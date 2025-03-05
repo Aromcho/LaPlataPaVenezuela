@@ -88,6 +88,7 @@ const NavBar = () => {
             <Nav.Link href="#servicios">Servicios</Nav.Link>
             <Nav.Link href="#calculadora">Calculadora de Cambio</Nav.Link>
             <Nav.Link href="#contacto">Contacto</Nav.Link>
+            <Nav.Link href="/envios">Mis envios</Nav.Link>
           </Nav>
           {renderAuthButtons()}
         </Navbar.Collapse>

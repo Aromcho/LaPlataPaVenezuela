@@ -17,7 +17,10 @@ const ChatModal = ({ show, onHide }) => {
   return (
     <Modal show={show} onHide={onHide} centered className="chat-modal">
       <Modal.Header closeButton className="chat-modal-header">
-        <Modal.Title>Chat de Ayuda</Modal.Title>
+        <Modal.Title>
+          <img className='img-chat' src="./img/Arantxa.png" alt="" />
+          La Plata pa´ Venezuela
+          </Modal.Title>
       </Modal.Header>
       <Modal.Body className="chat-modal-body">
         <div className="message-container">

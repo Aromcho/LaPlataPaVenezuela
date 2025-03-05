@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import './Face.css';
 import { Typography } from '@mui/material';
@@ -11,8 +11,12 @@ import Recarga from '../Recarga/Recarga.jsx';
 import Servicios from '../Servicios/Servicios.jsx';
 import FAQ from '../FAQ/FAQ.jsx';
 import { FaWhatsapp } from 'react-icons/fa';
+import ChatBubble from '../ChatBubble/ChatBubble.jsx';
+import ChatModal from '../ChatModal/ChatModal.jsx';
 
 const Face = () => {
+  const [showChat, setShowChat] = useState(false);
+
   return (
     <div>
       <header className="hero-section p-4">
@@ -23,9 +27,12 @@ const Face = () => {
           </p>
           <img className='w-50' src="./img/raya_verde.png" alt="" />
           <h2 className='mt-2'>¡PROTEGE A LOS TUYOS!</h2>
-          <button className='button-enviar'>
-          <FaWhatsapp className='whatsapp-icon'/> haz tu enviuo ahora
-            </button>
+          <button 
+            className='button-enviar' 
+            onClick={() => window.open('https://wa.me/584247249758', '_blank')}
+          >
+            <FaWhatsapp className='whatsapp-icon'/> haz tu envío ahora
+          </button>
         </div>
 
         <div className="calculadora-hero">
@@ -34,17 +41,17 @@ const Face = () => {
       </header>
 
       <main>
-      <section
-        id="quienes-somos"
-        className="quienes-somos-section"
-        style={{
-          backgroundImage: `url("./img/paisaje.png")`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          padding: '60px 0'
-        }}
-      >
+        <section
+          id="quienes-somos"
+          className="quienes-somos-section"
+          style={{
+            backgroundImage: `url("./img/paisaje.png")`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            padding: '60px 0'
+          }}
+        >
           <h2 className='text-center'>¡¡CON NOSOTROS, TU DINERO LLEGA SEGURO DONDE QUIÉRA QUE LO NECESITES!!</h2>
         </section>
         <ItemListContainer />
@@ -59,6 +66,16 @@ const Face = () => {
       <footer className="footer p-3">
         <p>Derechos reservados © 2023 La Plata pa' Venezuela</p>
       </footer>
+
+      {/* Burbuja de chat flotante */}
+      <ChatBubble onClick={() => setShowChat(true)} />
+      <button 
+            onClick={() => window.open('https://wa.me/584247249758', '_blank')}
+          >
+      <FaWhatsapp className='whatsapp-icon-buble'/>
+      </button>
+      {/* Modal del chat */}
+      <ChatModal show={showChat} onHide={() => setShowChat(false)} />
     </div>
   );
 };
