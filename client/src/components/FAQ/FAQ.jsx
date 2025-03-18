@@ -6,37 +6,55 @@ import './FAQ.css';
 
 const preguntasRespuestas = [
     {
+        pregunta: "¿Eres cliente por primera vez y aún tienes dudas o no te sientes completamente seguro?",
+        respuesta: "¡Queremos que te sientas tranquilo! Agendamos una videollamada personalizada con Arantxa Valecillos, CEO de La Plata Pa Venezuela, para resolver todas tus preguntas y brindarte la confianza que necesitas.Nuestro equipo está siempre disponible para ofrecerte la mejor atención. ¡No dudes en escribirnos!"
+    },
+    {
         pregunta: "¿Cuál es el horario de atención?",
-        respuesta: "Nuestro horario de atención es de lunes a sábado, de 9:00 a.m. a 9:00 p.m."
+        respuesta: "Nuestro horario de atención es de Lunes a Viernes, de 9:00 a.m. a 8:00 p.m. y Sábados de 10:00 a.m. a 5:00 p.m. (Hora Venezuela)"
     },
     
     {
-        pregunta: "¿Por qué debería confiar un su servicio?",
-        respuesta: "Puedes contactarnos a través de nuestro formulario en la web, vía correo electrónico o por nuestro chat en vivo."
-    },
-    {
-        pregunta: "¿Cuáles son los métodos de pago?",
+        pregunta: "¿Por qué confiar en los servicios de La Plata Pa Venezuela?",
         respuesta: (
             <>
-                <p>1 Calcula el monto que deseas enviar a través de nuestra página web, selecciona la moneda que envías y la que recibes.</p>
-                <p>2 Escríbenos al WhatsApp y proporciónanos tu nombre y apellido junto con un documento de identidad válido, y recibe asesoramiento sobre lo que necesitas.</p>
-                <p>3 Completa la información del destinatario de forma escrita (nombre completo y datos de la cuenta bancaria, sin puntos, ni comas, ni espacios).</p>
-                <p>4 Revisa y confirma todos los detalles antes de finalizar.</p>
-                <p>5 <strong>¡Listo!</strong> Tu remesa se procesará de inmediato y podrás hacerle seguimiento en tiempo real desde la web.</p>
+                <p>En La Plata Pa Venezuela, nos enfocamos en ofrecer un servicio seguro, rápido y transparente. Con años de experiencia en el mercado, garantizamos:</p>
+                <p>● Seguridad: Protegemos tus datos y transacciones con procesos confiables y verificados. </p>
+                <p>● Rapidez: Tus remesas se procesan de inmediato y puedes hacerles seguimiento en tiempo real.</p>
+                <p>● Transparencia: Sin cargos ocultos y con tasas competitivas. </p>
+                <p>● Atención personalizada: Nuestro equipo está siempre disponible para resolver tus dudas y brindarte el mejor servicio. </p>
+                <p>Somos la opción confiable para miles de personas que envían dinero a Venezuela. ¡Tu tranquilidad es nuestra prioridad!</p>
             </>
         )
     },
     {
-        pregunta: "¿Necesito algún documento para el envío?",
-        respuesta: "Sí, ofrecemos una garantía de devolución de 30 días si no estás satisfecho con el servicio."
-    },
-    {
-        pregunta: "¿Cuáñ es el monto minimo que puedo enviar?",
-        respuesta: "Sí, puedes modificar tu pedido antes de que sea procesado. Una vez en proceso, necesitarás contactar con soporte."
+        pregunta: "¿Cuáles son los pasos para enviar dinero?",
+        respuesta: (
+            <>
+                <p>1. Calcula tu envío: Ingresa el monto que deseas enviar en nuestra página web, selecciona la moneda de origen y la moneda de destino.</p>
+                <p>2. Contáctanos por WhatsApp: Escríbenos y proporciona tu nombre completo, un documento de identidad válido y espera a que te confirmemos la cuenta bancaria a la que debes realizar la transferencia. </p>
+                <p>3. Completa los datos del destinatario: Una vez confirmada la cuenta, ingresa la información del beneficiario de manera clara y sin caracteres especiales (nombre completo y datos de la cuenta bancaria, sin puntos, comas ni espacios). No olvides adjuntar el comprobante de pago. </p>
+                <p>4. Revisa y confirma: Verifica todos los detalles de la transacción antes de finalizar para asegurarte de que todo esté correcto. </p>
+                <p>5. <strong>¡Listo!</strong> Tu remesa se procesará de inmediato y podrás hacerle seguimiento en tiempo real desde nuestra plataforma. </p>
+            </>
+        )
     },
     {
         pregunta: "¿Por donde puedo contactar si tengo dudas?",
-        respuesta: "Sí, ofrecemos descuentos en compras al por mayor. Contáctanos para obtener más información sobre precios especiales."
+        respuesta: (
+            <>
+                <p>¿Tienes dudas o necesitas ayuda?</p>
+                <p>¡Estamos aquí para ayudarte! Puedes contactarnos a través de:</p>
+                <p>● WhatsApp: [Número de WhatsApp]</p>
+                <p>● Instagram: [Usuario de Instagram] </p>
+                <p>● Correo electrónico: [Dirección de correo electrónico]</p>
+                <p>Nuestro equipo estará encantado de resolver tus preguntas y brindarte la atención que necesitas. ¡No dudes en escribirnos!</p>
+            </>
+        )
+    },
+    {
+        pregunta: "¿Cuál es el monto mínimo que puedo enviar?",
+        respuesta: "En La Plata pa´Venezuela, entendemos que todo dinero es valioso. Puedes enviar cualquier monto, desde $1 hasta el que necesites. ¡Estamos aquí para facilitarte el proceso, sin importar el tamaño de tu remesa!"
     }
 ];
 

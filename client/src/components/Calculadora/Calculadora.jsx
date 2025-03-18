@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaChevronDown } from 'react-icons/fa'
 import "./Calculadora.css";
 
 const Calculadora = () => {
@@ -93,6 +94,7 @@ const Calculadora = () => {
                                     </option>
                                 ))}
                             </select>
+                            <FaChevronDown className="select-icon"/>
                         </div>
                     </div>
 
@@ -111,6 +113,7 @@ const Calculadora = () => {
                                     </option>
                                 ))}
                             </select>
+                            <FaChevronDown className="select-icon"/>
                         </div>
                     </div>
                 </div>

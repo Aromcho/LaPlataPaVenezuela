@@ -82,6 +82,7 @@
 
 @media (max-width: 768px) {
   .testimonios-cards {
+    width: 100vw;
     flex-direction: column;
     padding-top: 50px;
     margin-top: 20px;
@@ -90,7 +91,7 @@
   .testimonio-card {
     width: 80%;
     height: auto;
-    padding: 20px;
+    padding: 40px;
     margin: 10px 0;
   }
 

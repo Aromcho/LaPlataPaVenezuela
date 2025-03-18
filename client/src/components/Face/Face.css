@@ -221,7 +221,7 @@ header > * {
   }
   .whatsapp-icon-buble {
     z-index: 1000;
-    bottom: 30px;
-    right: 50px;
+    bottom: 20px;
+    right: 20px;
   }
 }

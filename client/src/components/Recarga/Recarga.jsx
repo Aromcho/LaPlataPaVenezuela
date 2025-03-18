@@ -10,7 +10,7 @@ const Recarga = () => {
                 <div className="metodos-wrapper">
                     <div className='metodos yellow'>
                         <h4>Recarga</h4>
-                        <p>A cualquier moneda</p>
+                        <p>con cualquier moneda</p>
                         <div className='metodo-logo-cont'>
                             <img className='metodo-logo' src="./img/Wally.png" alt="" />
                             <h4>Wally</h4>
@@ -22,7 +22,7 @@ const Recarga = () => {
                     </div>
                     <div className='metodos blue'>
                         <h4>Vende</h4>
-                        <p>A cualquier moneda</p>
+                        <p>con cualquier moneda</p>
                         <div className='metodo-logo-cont'>
                             <img className='metodo-logo' src="./img/Paypal.png" alt="" />
                             <h4>Paypal</h4>
