@@ -4,6 +4,12 @@ import mongoosePaginate from "mongoose-paginate-v2";
 const tasaSchema = new Schema({
   monedaDestino: { type: String, required: true },
   tasa: { type: Number, required: true },
+  // Campo para la operación
+  operacion: {
+    type: String,
+    enum: ["x", "/"],
+    default: "x"
+  }
 }, { _id: true });
 
 const datosTransferenciaSchema = new Schema({
@@ -17,7 +23,7 @@ const productSchema = new Schema({
   nombre: { type: String, required: true },   // Nombre del producto
   moneda: { type: String, required: true },   // Moneda del producto
   cuenta: [datosTransferenciaSchema],         // Datos de transferencia
-  tasas: [tasaSchema],                        // Tasas de cambio
+  tasas: [tasaSchema],                        // Tasas de cambio (cada una con su "operacion")
 }, {
   timestamps: true
 });

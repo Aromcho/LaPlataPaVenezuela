@@ -19,10 +19,18 @@ const Calculadora = () => {
                 }
                 const data = await response.json();
 
+                // Construimos un objeto con todas las monedas
+                // Cada clave será product.moneda (ej. "USD", "PEN", etc.)
+                // Y dentro, guardamos un objeto "tasas" donde cada clave 
+                // es la monedaDestino y cada valor es { value, operacion }
+                // También guardamos la propiedad "imagen" para mostrar la bandera.
                 const rates = data.reduce((acc, product) => {
                     acc[product.moneda] = {
                         tasas: product.tasas.reduce((innerAcc, tasa) => {
-                            innerAcc[tasa.monedaDestino] = tasa.tasa;
+                            innerAcc[tasa.monedaDestino] = {
+                                value: tasa.tasa,
+                                operacion: (tasa.operacion ?? 'x') // fallback a 'x' si no viene
+                            };
                             return innerAcc;
                         }, {}),
                         imagen: product.imagen
@@ -42,9 +50,31 @@ const Calculadora = () => {
 
     // Calcula automáticamente cuando cambien dependencias
     useEffect(() => {
-        const exchangeRate = exchangeRates[fromCurrency]?.tasas[toCurrency] || 1;
-        if (amount && exchangeRate) {
-            const calculatedResult = amount * exchangeRate;
+        // Obtenemos el objeto que guarda { value, operacion } para la tasa
+        const exchangeObj = exchangeRates[fromCurrency]?.tasas[toCurrency];
+
+        if (amount && exchangeObj) {
+            const { value, operacion } = exchangeObj;
+            let calculatedResult = 0;
+
+            // Si la operacion es "x", multiplicamos
+            if (operacion === 'x') {
+                calculatedResult = parseFloat(amount) * parseFloat(value);
+            }
+            // Si la operacion es "/", dividimos
+            else if (operacion === '/') {
+                // Evitar dividir por cero si la tasa fuera 0
+                if (parseFloat(value) !== 0) {
+                    calculatedResult = parseFloat(amount) / parseFloat(value);
+                } else {
+                    calculatedResult = 0;
+                }
+            }
+            // Valor por defecto si no hay operacion reconocida
+            else {
+                calculatedResult = parseFloat(amount); 
+            }
+
             setResult(calculatedResult.toFixed(2));
         } else {
             setResult('0.00');
@@ -78,10 +108,15 @@ const Calculadora = () => {
                         />
                     </div>
                 </div>
-                <div className="col-md-6 name-coin"   >
+                <div className="col-md-6 name-coin">
                     <div className="form-group name-coin-group">
                         <div className="select-container">
-                            <img src={exchangeRates[toCurrency]?.imagen} alt={toCurrency} className="flag-icon" />
+                            {/* Moneda de destino */}
+                            <img 
+                                src={exchangeRates[toCurrency]?.imagen} 
+                                alt={toCurrency} 
+                                className="flag-icon" 
+                            />
                             <select
                                 id="toCurrency"
                                 className="form-control currency-select"
@@ -94,13 +129,18 @@ const Calculadora = () => {
                                     </option>
                                 ))}
                             </select>
-                            <FaChevronDown className="select-icon"/>
+                            <FaChevronDown className="select-icon" />
                         </div>
                     </div>
 
                     <div className="form-group name-coin-group">
                         <div className="select-container">
-                            <img src={exchangeRates[fromCurrency]?.imagen} alt={fromCurrency} className="flag-icon" />
+                            {/* Moneda de origen */}
+                            <img 
+                                src={exchangeRates[fromCurrency]?.imagen} 
+                                alt={fromCurrency} 
+                                className="flag-icon" 
+                            />
                             <select
                                 id="fromCurrency"
                                 className="form-control currency-select"
@@ -113,7 +153,7 @@ const Calculadora = () => {
                                     </option>
                                 ))}
                             </select>
-                            <FaChevronDown className="select-icon"/>
+                            <FaChevronDown className="select-icon" />
                         </div>
                     </div>
                 </div>

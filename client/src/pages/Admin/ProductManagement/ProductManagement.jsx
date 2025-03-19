@@ -1,7 +1,9 @@
+// src/components/ProductManagement.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Button, Card, Row, Col, Modal, Form, Tooltip, OverlayTrigger } from 'react-bootstrap';
-import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'; // Usando react-icons
-import './ProductManagement.css'; // Agregar un archivo CSS personalizado para más estilo
+import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
+import './ProductManagement.css';
 
 const ProductManagement = () => {
   const [productos, setProductos] = useState([]);
@@ -13,7 +15,9 @@ const ProductManagement = () => {
     imagen: '',
     nombre: '',
     moneda: '',
-    tasas: [{ monedaDestino: '', tasa: '', operacion: 'multiplicar' }]
+    tasas: [
+      { monedaDestino: '', tasa: '', operacion: 'x' }
+    ]
   });
 
   // Estado inicial de "producto a editar"
@@ -22,14 +26,16 @@ const ProductManagement = () => {
     imagen: '',
     nombre: '',
     moneda: '',
-    tasas: [{ monedaDestino: '', tasa: '', operacion: 'multiplicar' }]
+    tasas: [
+      { monedaDestino: '', tasa: '', operacion: 'x' }
+    ]
   });
 
+  // Al montar el componente, obtenemos los productos paginados
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        let url = `/api/product/paginate?limit=15&page=1`;
-        const response = await fetch(url);
+        const response = await fetch('/api/product/paginate?limit=15&page=1');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -42,17 +48,24 @@ const ProductManagement = () => {
     fetchProducts();
   }, []);
 
+  // Agregar una nueva tasa al producto (sea newProduct o editProduct)
   const handleAddTasa = (product, setProduct) => {
     setProduct({
       ...product,
-      tasas: [...product.tasas, { monedaDestino: '', tasa: '', operacion: 'multiplicar' }]
+      tasas: [
+        ...product.tasas,
+        { monedaDestino: '', tasa: '', operacion: 'x' }
+      ]
     });
   };
 
+  // Manejador genérico para cambiar valores en newProduct o editProduct
   const handleChange = (e, index, field, product, setProduct) => {
+    // Si es un campo "general" (imagen, nombre, moneda), lo cambiamos directamente
     if (field === 'imagen' || field === 'nombre' || field === 'moneda') {
       setProduct({ ...product, [field]: e.target.value });
     } else {
+      // Si es un campo de las tasas, modificamos el array "tasas"
       const newTasas = product.tasas.map((tasa, idx) => {
         if (idx !== index) return tasa;
         return { ...tasa, [field]: e.target.value };
@@ -61,6 +74,7 @@ const ProductManagement = () => {
     }
   };
 
+  // Manejar el submit de "Agregar Producto"
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -75,13 +89,25 @@ const ProductManagement = () => {
         throw new Error('Network response was not ok');
       }
       const newProductResponse = await response.json();
+
+      // Agregamos el nuevo producto a la lista
       setProductos([...productos, newProductResponse]);
+
+      // Cerramos el modal y reseteamos el newProduct si deseas
       setShowAddModal(false);
+      // Opcionalmente, resetear newProduct a sus valores iniciales:
+      // setNewProduct({
+      //   imagen: '',
+      //   nombre: '',
+      //   moneda: '',
+      //   tasas: [{ monedaDestino: '', tasa: '', operacion: 'x' }]
+      // });
     } catch (error) {
       console.error("Error creating product:", error);
     }
   };
 
+  // Manejar el submit de "Editar Producto"
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -96,15 +122,20 @@ const ProductManagement = () => {
         throw new Error('Network response was not ok');
       }
       const updatedProduct = await response.json();
+
+      // Actualizamos la lista de productos en el estado
       setProductos(productos.map(product => 
         product._id === updatedProduct._id ? updatedProduct : product
       ));
+
+      // Cerramos el modal
       setShowEditModal(false);
     } catch (error) {
       console.error("Error updating product:", error);
     }
   };
 
+  // Manejar la eliminación de un producto
   const handleDelete = async (id) => {
     try {
       const response = await fetch(`/api/product/${id}`, {
@@ -113,12 +144,14 @@ const ProductManagement = () => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
+      // Quitamos el producto borrado del estado
       setProductos(productos.filter(product => product._id !== id));
     } catch (error) {
       console.error("Error deleting product:", error);
     }
   };
 
+  // Cuando el usuario hace click en "Editar"
   const handleEditClick = (product) => {
     setEditProduct(product);
     setShowEditModal(true);
@@ -126,12 +159,12 @@ const ProductManagement = () => {
 
   return (
     <>
-      {/* Botón para abrir el modal de agregar */}
+      {/* Botón para abrir el modal de "Agregar Producto" */}
       <Button className="mb-3" variant="primary" onClick={() => setShowAddModal(true)}>
         Agregar Tasa
       </Button>
 
-      {/* Lista de productos como tarjetas */}
+      {/* Listado de productos en cards */}
       <Row>
         {productos.map((product) => (
           <Col md={4} key={product._id} className="mb-4">
@@ -152,10 +185,8 @@ const ProductManagement = () => {
                   <strong>Tasas:</strong>
                   {product.tasas && product.tasas.map((tasa, index) => (
                     <div key={index}>
-                      <span>
-                        {tasa.operacion === 'multiplicar' ? 'x' : '%'}{" "}
-                        {tasa.monedaDestino}: {tasa.tasa}
-                      </span>
+                      {/* Mostramos "x" o "/" según operacion */}
+                      {tasa.operacion} {tasa.monedaDestino}: {tasa.tasa}
                     </div>
                   ))}
                 </Card.Text>
@@ -192,7 +223,7 @@ const ProductManagement = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleAddSubmit}>
-            {/* Datos generales */}
+            {/* Campos generales */}
             <Form.Group className="mb-3">
               <Form.Label>Imagen</Form.Label>
               <Form.Control
@@ -227,11 +258,10 @@ const ProductManagement = () => {
               />
             </Form.Group>
 
-            {/* Tasas */}
+            {/* Sección de tasas */}
             <Form.Label>Tasas</Form.Label>
             {newProduct.tasas.map((tasa, index) => (
               <div key={index} className="tasa-section">
-                {/* Selector de operación */}
                 <Form.Group className="mb-3">
                   <Form.Label>Operación</Form.Label>
                   <Form.Select
@@ -239,8 +269,8 @@ const ProductManagement = () => {
                     value={tasa.operacion}
                     onChange={(e) => handleChange(e, index, 'operacion', newProduct, setNewProduct)}
                   >
-                    <option value="multiplicar">x</option>
-                    <option value="dividir">%</option>
+                    <option value="x">x</option>
+                    <option value="/">/</option>
                   </Form.Select>
                 </Form.Group>
 
@@ -269,7 +299,12 @@ const ProductManagement = () => {
                 </Form.Group>
               </div>
             ))}
-            <Button variant="outline-secondary" className="me-2" onClick={() => handleAddTasa(newProduct, setNewProduct)}>
+
+            <Button 
+              variant="outline-secondary" 
+              className="me-2" 
+              onClick={() => handleAddTasa(newProduct, setNewProduct)}
+            >
               Agregar Tasa
             </Button>
             <Button variant="primary" type="submit">
@@ -286,7 +321,7 @@ const ProductManagement = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleEditSubmit}>
-            {/* Sección de datos generales */}
+            {/* Datos Generales del producto a editar */}
             <div className="edit-form-section">
               <h5 className="section-subtitle">Datos Generales</h5>
 
@@ -327,20 +362,20 @@ const ProductManagement = () => {
               </Form.Group>
             </div>
 
-            {/* Sección de tasas */}
+            {/* Tasas del producto a editar */}
             <div className="edit-form-section mt-4">
               <h5 className="section-subtitle">Tasas</h5>
-
               {editProduct.tasas.map((tasa, index) => (
                 <div key={index} className="tasa-section">
                   <Form.Group className="mb-3">
                     <Form.Label>Operación</Form.Label>
                     <Form.Select
+                      className="formControl"
                       value={tasa.operacion}
                       onChange={(e) => handleChange(e, index, 'operacion', editProduct, setEditProduct)}
                     >
-                      <option value="multiplicar">x</option>
-                      <option value="dividir">%</option>
+                      <option value="x">multiplicar</option>
+                      <option value="/">/</option>
                     </Form.Select>
                   </Form.Group>
 
