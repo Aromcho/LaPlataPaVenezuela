@@ -39,3 +39,50 @@
 .mb-3 {
   margin-bottom: 20px;
 }
+/* --- Modales de edición --- */
+.modal-edit .modal-content {
+  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 1.5rem;
+}
+
+/* Sección que agrupa partes del formulario (Datos Generales, Tasas, etc.) */
+.edit-form-section {
+  padding: 1rem;
+  background-color: #f7f9fc;
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+/* Subtítulo dentro de cada sección del formulario */
+.section-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0033AB;
+  margin-bottom: 1rem;
+}
+
+/* Cada tasa con borde suave para separarlas */
+.tasa-section {
+  display: flex;
+  gap: 10px;
+  background-color: #fff;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+}
+/* Agrega un borde más grueso y un radio de borde a todos los form-controls */
+.formControl {
+  border: 2px solid #ccc !important;
+  border-radius: 4px !important;
+  background-color: #fff; /* Asegúrate de que el fondo sea blanco */
+}
+
+/* Para resaltar al hacer focus en el input */
+.formControl:focus {
+  border-color: #007BFF !important; /* Color de acento al enfocar */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3) !important;
+}
+

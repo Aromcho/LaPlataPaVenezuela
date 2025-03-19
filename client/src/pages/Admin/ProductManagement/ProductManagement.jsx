@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, Row, Col, Modal, Form, Tooltip, OverlayTrigger } from 'react-bootstrap';
-import { PencilSquare, Trash } from 'react-bootstrap-icons';
+import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'; // Usando react-icons
 import './ProductManagement.css'; // Agregar un archivo CSS personalizado para más estilo
 
 const ProductManagement = () => {
   const [productos, setProductos] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+
+  // Estado inicial de "nuevo producto"
   const [newProduct, setNewProduct] = useState({
     imagen: '',
     nombre: '',
     moneda: '',
-    tasas: [{ monedaDestino: '', tasa: '' }]
+    tasas: [{ monedaDestino: '', tasa: '', operacion: 'multiplicar' }]
   });
+
+  // Estado inicial de "producto a editar"
   const [editProduct, setEditProduct] = useState({
     _id: '',
     imagen: '',
     nombre: '',
     moneda: '',
-    tasas: [{ monedaDestino: '', tasa: '' }]
+    tasas: [{ monedaDestino: '', tasa: '', operacion: 'multiplicar' }]
   });
 
   useEffect(() => {
@@ -35,14 +39,13 @@ const ProductManagement = () => {
         console.error("Error fetching products:", error);
       }
     };
-
     fetchProducts();
   }, []);
 
   const handleAddTasa = (product, setProduct) => {
     setProduct({
       ...product,
-      tasas: [...product.tasas, { monedaDestino: '', tasa: '' }]
+      tasas: [...product.tasas, { monedaDestino: '', tasa: '', operacion: 'multiplicar' }]
     });
   };
 
@@ -51,7 +54,7 @@ const ProductManagement = () => {
       setProduct({ ...product, [field]: e.target.value });
     } else {
       const newTasas = product.tasas.map((tasa, idx) => {
-        if (index !== idx) return tasa;
+        if (idx !== index) return tasa;
         return { ...tasa, [field]: e.target.value };
       });
       setProduct({ ...product, tasas: newTasas });
@@ -93,7 +96,9 @@ const ProductManagement = () => {
         throw new Error('Network response was not ok');
       }
       const updatedProduct = await response.json();
-      setProductos(productos.map(product => product._id === updatedProduct._id ? updatedProduct : product));
+      setProductos(productos.map(product => 
+        product._id === updatedProduct._id ? updatedProduct : product
+      ));
       setShowEditModal(false);
     } catch (error) {
       console.error("Error updating product:", error);
@@ -121,11 +126,12 @@ const ProductManagement = () => {
 
   return (
     <>
+      {/* Botón para abrir el modal de agregar */}
       <Button className="mb-3" variant="primary" onClick={() => setShowAddModal(true)}>
         Agregar Tasa
       </Button>
 
-      {/* Cards para productos */}
+      {/* Lista de productos como tarjetas */}
       <Row>
         {productos.map((product) => (
           <Col md={4} key={product._id} className="mb-4">
@@ -146,19 +152,30 @@ const ProductManagement = () => {
                   <strong>Tasas:</strong>
                   {product.tasas && product.tasas.map((tasa, index) => (
                     <div key={index}>
-                      {tasa.monedaDestino}: {tasa.tasa}
+                      <span>
+                        {tasa.operacion === 'multiplicar' ? 'x' : '%'}{" "}
+                        {tasa.monedaDestino}: {tasa.tasa}
+                      </span>
                     </div>
                   ))}
                 </Card.Text>
                 <div className="d-flex justify-content-between">
                   <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
-                    <Button variant="outline-primary" size="sm" onClick={() => handleEditClick(product)}>
-                      <PencilSquare />
+                    <Button 
+                      variant="outline-primary" 
+                      size="sm" 
+                      onClick={() => handleEditClick(product)}
+                    >
+                      <FaPencilAlt />
                     </Button>
                   </OverlayTrigger>
                   <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
-                    <Button variant="outline-danger" size="sm" onClick={() => handleDelete(product._id)}>
-                      <Trash />
+                    <Button 
+                      variant="outline-danger" 
+                      size="sm" 
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      <FaTrashAlt />
                     </Button>
                   </OverlayTrigger>
                 </div>
@@ -175,50 +192,76 @@ const ProductManagement = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleAddSubmit}>
-            <Form.Group>
+            {/* Datos generales */}
+            <Form.Group className="mb-3">
               <Form.Label>Imagen</Form.Label>
               <Form.Control
+                className="formControl"
                 type="text"
+                placeholder="URL de la imagen (ej. https://...)"
                 value={newProduct.imagen}
                 onChange={(e) => handleChange(e, null, 'imagen', newProduct, setNewProduct)}
                 required
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
+                className="formControl"
                 type="text"
+                placeholder="Nombre del producto (ej. Dólar estadounidense)"
                 value={newProduct.nombre}
                 onChange={(e) => handleChange(e, null, 'nombre', newProduct, setNewProduct)}
                 required
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mb-4">
               <Form.Label>Moneda</Form.Label>
               <Form.Control
+                className="formControl"
                 type="text"
+                placeholder="Código de la moneda (ej. USD)"
                 value={newProduct.moneda}
                 onChange={(e) => handleChange(e, null, 'moneda', newProduct, setNewProduct)}
                 required
               />
             </Form.Group>
+
+            {/* Tasas */}
             <Form.Label>Tasas</Form.Label>
             {newProduct.tasas.map((tasa, index) => (
-              <div key={index}>
-                <Form.Group>
+              <div key={index} className="tasa-section">
+                {/* Selector de operación */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Operación</Form.Label>
+                  <Form.Select
+                    className="formControl"
+                    value={tasa.operacion}
+                    onChange={(e) => handleChange(e, index, 'operacion', newProduct, setNewProduct)}
+                  >
+                    <option value="multiplicar">x</option>
+                    <option value="dividir">%</option>
+                  </Form.Select>
+                </Form.Group>
+
+                <Form.Group className="mb-2">
                   <Form.Label>Moneda Destino</Form.Label>
                   <Form.Control
+                    className="formControl"
                     type="text"
+                    placeholder="Moneda de destino (ej. PEN)"
                     value={tasa.monedaDestino}
                     onChange={(e) => handleChange(e, index, 'monedaDestino', newProduct, setNewProduct)}
                     required
                   />
                 </Form.Group>
-                <Form.Group>
+                <Form.Group className="mb-3">
                   <Form.Label>Tasa</Form.Label>
                   <Form.Control
+                    className="formControl"
                     type="number"
                     step="0.01"
+                    placeholder="Valor de la tasa (ej. 3.70)"
                     value={tasa.tasa}
                     onChange={(e) => handleChange(e, index, 'tasa', newProduct, setNewProduct)}
                     required
@@ -226,7 +269,7 @@ const ProductManagement = () => {
                 </Form.Group>
               </div>
             ))}
-            <Button variant="secondary" onClick={() => handleAddTasa(newProduct, setNewProduct)}>
+            <Button variant="outline-secondary" className="me-2" onClick={() => handleAddTasa(newProduct, setNewProduct)}>
               Agregar Tasa
             </Button>
             <Button variant="primary" type="submit">
@@ -237,69 +280,111 @@ const ProductManagement = () => {
       </Modal>
 
       {/* Modal para Editar Producto */}
-      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+      <Modal show={showEditModal} onHide={() => setShowEditModal(false)} className="modal-edit">
         <Modal.Header closeButton>
           <Modal.Title>Editar Producto</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleEditSubmit}>
-            <Form.Group>
-              <Form.Label>Imagen</Form.Label>
-              <Form.Control
-                type="text"
-                value={editProduct.imagen}
-                onChange={(e) => handleChange(e, null, 'imagen', editProduct, setEditProduct)}
-                required
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control
-                type="text"
-                value={editProduct.nombre}
-                onChange={(e) => handleChange(e, null, 'nombre', editProduct, setEditProduct)}
-                required
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Moneda</Form.Label>
-              <Form.Control
-                type="text"
-                value={editProduct.moneda}
-                onChange={(e) => handleChange(e, null, 'moneda', editProduct, setEditProduct)}
-                required
-              />
-            </Form.Group>
-            <Form.Label>Tasas</Form.Label>
-            {editProduct.tasas.map((tasa, index) => (
-              <div key={index}>
-                <Form.Group>
-                  <Form.Label>Moneda Destino</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={tasa.monedaDestino}
-                    onChange={(e) => handleChange(e, index, 'monedaDestino', editProduct, setEditProduct)}
-                    required
-                  />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label>Tasa</Form.Label>
-                  <Form.Control
-                    type="number"
-                    step="0.01"
-                    value={tasa.tasa}
-                    onChange={(e) => handleChange(e, index, 'tasa', editProduct, setEditProduct)}
-                    required
-                  />
-                </Form.Group>
-              </div>
-            ))}
-            <Button variant="secondary" onClick={() => handleAddTasa(editProduct, setEditProduct)}>
-              Agregar Tasa
-            </Button>
-            <Button variant="primary" type="submit">
-              Guardar Cambios
-            </Button>
+            {/* Sección de datos generales */}
+            <div className="edit-form-section">
+              <h5 className="section-subtitle">Datos Generales</h5>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Imagen</Form.Label>
+                <Form.Control
+                  className="formControl"
+                  type="text"
+                  placeholder="URL de la imagen (ej. https://...)"
+                  value={editProduct.imagen}
+                  onChange={(e) => handleChange(e, null, 'imagen', editProduct, setEditProduct)}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  className="formControl"
+                  type="text"
+                  placeholder="Nombre del producto (ej. Dólar estadounidense)"
+                  value={editProduct.nombre}
+                  onChange={(e) => handleChange(e, null, 'nombre', editProduct, setEditProduct)}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-4">
+                <Form.Label>Moneda</Form.Label>
+                <Form.Control
+                  className="formControl"
+                  type="text"
+                  placeholder="Código de moneda (ej. USD)"
+                  value={editProduct.moneda}
+                  onChange={(e) => handleChange(e, null, 'moneda', editProduct, setEditProduct)}
+                  required
+                />
+              </Form.Group>
+            </div>
+
+            {/* Sección de tasas */}
+            <div className="edit-form-section mt-4">
+              <h5 className="section-subtitle">Tasas</h5>
+
+              {editProduct.tasas.map((tasa, index) => (
+                <div key={index} className="tasa-section">
+                  <Form.Group className="mb-3">
+                    <Form.Label>Operación</Form.Label>
+                    <Form.Select
+                      value={tasa.operacion}
+                      onChange={(e) => handleChange(e, index, 'operacion', editProduct, setEditProduct)}
+                    >
+                      <option value="multiplicar">x</option>
+                      <option value="dividir">%</option>
+                    </Form.Select>
+                  </Form.Group>
+
+                  <Form.Group className="mb-2">
+                    <Form.Label>Moneda Destino</Form.Label>
+                    <Form.Control
+                      className="formControl"
+                      type="text"
+                      placeholder="Moneda de destino (ej. PEN)"
+                      value={tasa.monedaDestino}
+                      onChange={(e) => handleChange(e, index, 'monedaDestino', editProduct, setEditProduct)}
+                      required
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Tasa</Form.Label>
+                    <Form.Control
+                      className="formControl"
+                      type="number"
+                      step="0.01"
+                      placeholder="Valor de la tasa (ej. 3.70)"
+                      value={tasa.tasa}
+                      onChange={(e) => handleChange(e, index, 'tasa', editProduct, setEditProduct)}
+                      required
+                    />
+                  </Form.Group>
+                </div>
+              ))}
+
+              <Button
+                variant="outline-secondary"
+                className="me-2"
+                onClick={() => handleAddTasa(editProduct, setEditProduct)}
+              >
+                Agregar Tasa
+              </Button>
+            </div>
+
+            <div className="text-end mt-4">
+              <Button variant="primary" type="submit">
+                Guardar Cambios
+              </Button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>

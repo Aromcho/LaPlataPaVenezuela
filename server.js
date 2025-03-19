@@ -28,8 +28,8 @@ nodeServer.listen(port, ready);
 server.use(morgan('dev'));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-server.use("/public", express.static("public"));
-server.use(express.static(__dirname + "/public"));
+server.use("/dist", express.static("dist"));
+server.use(express.static(__dirname + "/dist"));
 server.use(cookieParser(process.env.SECRET));
 server.use(cors());
 server.use(session({
@@ -47,6 +47,6 @@ server.use(session({
 server.use("/", indexRouter);
 server.use(errorHandler);
 server.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
   });
 server.use(pathHandler);
