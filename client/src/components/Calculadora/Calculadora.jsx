@@ -2,6 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { FaChevronDown } from 'react-icons/fa'
 import "./Calculadora.css";
 
+// Función para formatear: 1234.56 => "1.234,56"
+const formatNumber = (num) => {
+    if (isNaN(num)) return "0,00";         // Si no es un número, devolvemos "0,00"
+    
+    // Redondeamos a 2 decimales
+    let [integerPart, decimalPart] = num.toFixed(2).split(".");
+
+    // Agregamos punto para separar miles (cada 3 dígitos)
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    // Unimos la parte entera con la parte decimal usando coma
+    return integerPart + "," + decimalPart;
+};
+
 const Calculadora = () => {
     const [amount, setAmount] = useState('100');
     const [fromCurrency, setFromCurrency] = useState('Bs');
@@ -20,16 +34,12 @@ const Calculadora = () => {
                 const data = await response.json();
 
                 // Construimos un objeto con todas las monedas
-                // Cada clave será product.moneda (ej. "USD", "PEN", etc.)
-                // Y dentro, guardamos un objeto "tasas" donde cada clave 
-                // es la monedaDestino y cada valor es { value, operacion }
-                // También guardamos la propiedad "imagen" para mostrar la bandera.
                 const rates = data.reduce((acc, product) => {
                     acc[product.moneda] = {
                         tasas: product.tasas.reduce((innerAcc, tasa) => {
                             innerAcc[tasa.monedaDestino] = {
                                 value: tasa.tasa,
-                                operacion: (tasa.operacion ?? 'x') // fallback a 'x' si no viene
+                                operacion: (tasa.operacion ?? 'x')
                             };
                             return innerAcc;
                         }, {}),
@@ -50,43 +60,54 @@ const Calculadora = () => {
 
     // Calcula automáticamente cuando cambien dependencias
     useEffect(() => {
-        // Obtenemos el objeto que guarda { value, operacion } para la tasa
-        const exchangeObj = exchangeRates[fromCurrency]?.tasas[toCurrency];
-
+        let exchangeObj = exchangeRates[fromCurrency]?.tasas[toCurrency];
+        let invertida = false;
+    
+        // Si no existe la conversión directa, buscamos la inversa
+        if (!exchangeObj) {
+            const reverseObj = exchangeRates[toCurrency]?.tasas[fromCurrency];
+            if (reverseObj) {
+                exchangeObj = reverseObj;
+                invertida = true;
+            }
+        }
+    
         if (amount && exchangeObj) {
-            const { value, operacion } = exchangeObj;
+            let { value, operacion } = exchangeObj;
+    
+            // Si estamos usando la tasa inversa, invertimos la operación
+            if (invertida) {
+                operacion = operacion === 'x' ? '/' : 'x';
+            }
+    
             let calculatedResult = 0;
-
-            // Si la operacion es "x", multiplicamos
+    
             if (operacion === 'x') {
                 calculatedResult = parseFloat(amount) * parseFloat(value);
-            }
-            // Si la operacion es "/", dividimos
-            else if (operacion === '/') {
-                // Evitar dividir por cero si la tasa fuera 0
+            } else if (operacion === '/') {
                 if (parseFloat(value) !== 0) {
                     calculatedResult = parseFloat(amount) / parseFloat(value);
                 } else {
                     calculatedResult = 0;
                 }
+            } else {
+                calculatedResult = parseFloat(amount);
             }
-            // Valor por defecto si no hay operacion reconocida
-            else {
-                calculatedResult = parseFloat(amount); 
-            }
-
-            setResult(calculatedResult.toFixed(2));
+    
+            // Formateamos el resultado antes de guardarlo
+            setResult(formatNumber(calculatedResult));
         } else {
-            setResult('0.00');
+            setResult('0,00');
         }
     }, [amount, fromCurrency, toCurrency, exchangeRates]);
+    
 
     return (
         <div className="container">
             <h2 className="section-title-calculator">Calcula tu envio</h2>
             <div className="columna-envio">
                 <div className="col-md-6 name-coin">
-                    <div className="form-group">
+                    <div className="form-group">    
                         <label className='tu-envias' htmlFor="amount">Tu envías</label>
                         <input
                             type="number"
