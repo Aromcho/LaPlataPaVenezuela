@@ -1,67 +1,79 @@
-// passpot
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import User from "../data/mongo/models/user.model.js";
-import { createHash, verifyHash } from "../utils/hash.util.js";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import usersManager from "../data/mongo/managers/UserManager.mongo.js";
+import { createHash, verifyHash } from "../utils/hash.util.js";
+import { createToken } from "../utils/jwt.util.js";
 
 passport.use(
   "register",
   new LocalStrategy(
     { passReqToCallback: true, usernameField: "email" },
-    async (req, email, password,  done) => {
+    async (req, email, password, done) => {
       try {
-        if (!email || !password) {
-          const error = new Error("Please enter email and password!");
-          error.statusCode = 400;
-          return done(error);
-        }
-        const userExist = await User.findOne({ email: email });
-        if (userExist) {
-          const error = new Error("User already exists with that email.");
-          error.statusCode = 400; // Consider using 409 for conflict errors
-          return done(error);
-        }
+        if (!email || !password) return done(new Error("Email y contraseña requeridos"));
+        const userExist = await usersManager.readByEmail(email);
+        if (userExist) return done(new Error("Ya existe un usuario con ese email"));
+
         const hashPassword = createHash(password);
         req.body.password = hashPassword;
         const user = await usersManager.create(req.body);
-        return done(null, user);
+        const token = createToken({ id: user._id, role: user.role });
+        return done(null, { user, token });
       } catch (error) {
-        done(error);
-      }
-    }
-  )
-);
-passport.use(
-  "login",
-  new LocalStrategy(
-    { passReqToCallback: true, usernameField: "email" },
-    async (req, email, password,  done) => {
-      try {
-        const one = await usersManager.readByEmail(email);
-        if (!one) {
-          const error = new Error("Bad auth from login!");
-          error.statusCode = 401;
-          return done(null);
-        }
-        const verify = verifyHash(password, one.password);
-        if (verify) {
-          req.session.email = email;
-          req.session.online = true;
-          req.session.role = one.role;
-          req.session.photo = one.photo;
-          req.session.user_id = one._id;
-          return done(null, one);
-        }
-        const error = new Error("Invalid credentials");
-        error.statusCode = 401;
         return done(error);
-      } catch (error) {
-        return done(null);
       }
     }
   )
 );
 
+passport.use(
+  "login",
+  new LocalStrategy(
+    { passReqToCallback: true, usernameField: "email" },
+    async (req, email, password, done) => {
+      try {
+        const user = await usersManager.readByEmail(email);
+        if (!user || !verifyHash(password, user.password)) {
+          return done(new Error("Credenciales inválidas"));
+        }
+        const token = createToken({ id: user._id, role: user.role });
+        return done(null, { user, token });
+      } catch (error) {
+        return done(error);
+      }
+    }
+  )
+);
+
+passport.use("google", new GoogleStrategy(
+  {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_CALLBACK_URL || "http://localhost:8000/api/sessions/google/callback",
+    passReqToCallback: true
+  },
+  async (req, accessToken, refreshToken, profile, done) => {
+    try {
+      const email = profile.emails?.[0]?.value;
+      if (!email) return done(new Error("No se encontró email en el perfil"), null);
+
+      let user = await usersManager.readByEmail(email);
+      if (!user) {
+        user = await usersManager.create({
+          email,
+          name: profile.displayName,
+          password: createHash(profile.id),
+          photo: profile.photos?.[0]?.value || ''
+        });
+      }
+
+      const token = createToken({ id: user._id, role: user.role });
+      return done(null, { user, token });
+    } catch (error) {
+      return done(error);
+    }
+  }
+));
 
 export default passport;

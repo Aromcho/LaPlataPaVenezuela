@@ -1,86 +1,101 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import './Login.css';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
+import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    const user = {
-      email,
-      password,
-    };
-  
     try {
-      const response = await axios.post('/api/sessions/login', user);
-      
-      const statusResponse = await axios.get('/api/sessions/online');
-      if (statusResponse.data.role === 'admin') {
-        // Si el usuario es admin, redirigir a /admin
-        window.location.replace('/admin');
-      } else {
-        // Si no es admin, redirigir a la página principal
-        window.location.replace('/');
-      }
-      console.log(response);
-      
+      await axios.post("/api/sessions/login", { email, password });
+      const statusResponse = await axios.get("/api/sessions/online");
 
-    } catch (error) {
-      console.error(error);
-      
-      if (error.response && error.response.status === 401) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Usuario o contraseña incorrectos.',
-        });
+      if (statusResponse.data.role === "admin") {
+        window.location.replace("/admin");
       } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Ha ocurrido un error al intentar iniciar sesión.',
-        });
+        window.location.replace("/");
       }
+    } catch (error) {
+      const msg =
+        error.response && error.response.status === 401
+          ? "Usuario o contraseña incorrectos."
+          : "Ha ocurrido un error al intentar iniciar sesión.";
+      Swal.fire({ icon: "error", title: "Oops...", text: msg });
     }
   };
 
   return (
-    <Container className="my-5 text-white">
-      <Row className="justify-content-md-center">
-        <Col xs={12} md={6}>
-          <Card className="mt-4 card-custom">
-            <Card.Body className="bg-dark-custom">
-              <Card.Title className="mb-4 text-white">Iniciar sesión</Card.Title>
-              <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label className="text-white">Email</Form.Label>
-                  <Form.Control type="email" placeholder="Introduce tu email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </Form.Group>
+    <div className="login-wrapper">
+      <Container>
+        <Row className="justify-content-center">
+          <Col xs={12} md={8} lg={5}>
+            <Card className="login-card">
+              <Card.Body>
+                <h2 className="text-center mb-3">Iniciar sesión</h2>
+                <p className="text-center text-muted mb-4">Bienvenido de nuevo 👋</p>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId="formEmail" className="mb-3">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                    className="custom-input"
+                      type="email"
+                      placeholder="ejemplo@mail.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label className="text-white">Contraseña</Form.Label>
-                  <Form.Control type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </Form.Group>
+                  <Form.Group controlId="formPassword" className="mb-4">
+                    <Form.Label>Contraseña</Form.Label>
+                    <Form.Control
+                    className="custom-input"
+                      type="password"
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
 
-                <Button  variant="primary"  type="submit" className="w-100 btn-custom">
-                  Iniciar sesión
-                </Button>
-              </Form>
-              <Card.Text className="text-center mt-3 text-white-custom">
-                <Link to="/user/register">¿No tienes una cuenta? Regístrate</Link>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+                  <Button type="submit" className="w-100 custom-btn-primary">
+                    Iniciar sesión
+                  </Button>
+
+                  <Button
+                    variant="light"
+                    className="w-100 mt-3 custom-btn-google"
+                    onClick={() => (window.location.href = "/api/sessions/google")}
+                  >
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
+                      alt="Google"
+                      width="20"
+                      className="me-2"
+                    />
+                    Iniciar sesión con Google
+                  </Button>
+                </Form>
+
+                <div className="text-center mt-4">
+                  <small>
+                    ¿No tienes cuenta?{" "}
+                    <Link to="/user/register" className="custom-link">
+                      Regístrate
+                    </Link>
+                  </small>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

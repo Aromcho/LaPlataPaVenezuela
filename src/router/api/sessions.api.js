@@ -1,67 +1,104 @@
 import { Router } from "express";
-import usersManager from "../../data/mongo/managers/UserManager.mongo.js";
-import isValidEmail from "../../middlewares/isValidEmail.mid.js";
-import isValidData from "../../middlewares/isValidData.mid.js";
-import isValidUser from "../../middlewares/isValidUser.mid.js";
-import isValidPassword from "../../middlewares/isValidPassword.mid.js";
-import createHashPassword from "../../middlewares/createHashPassword.mid.js";
 import passport from "../../middlewares/passport.mid.js";
 
 const sessionsRouter = Router();
 
-sessionsRouter.post("/register", passport.authenticate("register", { session: false }) , async (req, res, next) => {
-  try {
-    return res.json({ statusCode:  201 ,message: "Registered!" });
-  } catch (error) {
-    return next(error);
-  }
-})
-
-sessionsRouter.post("/login", passport.authenticate("login", { session: false }), async (req, res, next) => {
-  try {
-    // Asumiendo que el rol del usuario está disponible en req.user.role después de la autenticación exitosa
-    const userRole = req.user.role;
-
-    // Redirige basado en el rol del usuario
-    if (userRole === 'admin') {
-      // Suponiendo que quieres enviar una respuesta JSON con la URL a la que el cliente debe redirigir
-      return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/admin" });
-    } else if (userRole === 'user') {
-      return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/" });
-    } else {
-      // Manejar otros roles o casos inesperados
-      return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/" });
+// Ruta de registro con Passport
+sessionsRouter.post(
+  "/register",
+  passport.authenticate("register", { session: false }),
+  async (req, res, next) => {
+    try {
+      return res.json({ statusCode: 201, message: "Registered!" });
+    } catch (error) {
+      return next(error);
     }
-  } catch (error) {
-    return next(error);
   }
-});
+);
 
+// Ruta de login con Passport
+sessionsRouter.post(
+  "/login",
+  passport.authenticate("login", { session: false }),
+  async (req, res, next) => {
+    try {
+      const { user, token } = req.user;
+      const redirectUrl = user.role === "admin" ? "/admin" : "/";
+
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+          sameSite: "lax",
+          maxAge: 1000 * 60 * 60 * 24, // 1 día
+        })
+        .json({
+          statusCode: 200,
+          message: "Logged in!",
+          redirectUrl,
+        });
+    } catch (error) {
+      return next(error);
+    }
+  }
+);
+
+// Verificar si el usuario está en línea (basado en token de cookie)
+import jwt from "jsonwebtoken";
 sessionsRouter.get("/online", async (req, res, next) => {
   try {
-    if (req.session.online) {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "No token", online: false });
+    }
+
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+      if (err) return res.status(401).json({ message: "Invalid token", online: false });
+
       return res.status(200).json({
         message: "Is online!",
-        user_id: req.session.user_id,
-        role: req.session.role,
+        user_id: decoded.id,
+        role: decoded.role,
         online: true,
       });
-    }
-    return res.status(401).json({
-      message: "Bad auth!",
     });
   } catch (error) {
     return next(error);
   }
 });
 
+// Cerrar sesión
 sessionsRouter.post("/signout", (req, res, next) => {
   try {
-    req.session.destroy();
+    res.clearCookie("token");
     return res.status(200).json({ message: "Signed out!" });
   } catch (error) {
     return next(error);
   }
 });
+
+// Login con Google
+sessionsRouter.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+sessionsRouter.get(
+  "/google/callback",
+  passport.authenticate("google", { session: false }),
+  (req, res, next) => {
+    try {
+      const { user, token } = req.user;
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+          sameSite: "lax",
+          maxAge: 1000 * 60 * 60 * 24,
+        })
+        .redirect("/"); // o redirigí a donde quieras
+    } catch (error) {
+      return next(error);
+    }
+  }
+);
 
 export default sessionsRouter;
