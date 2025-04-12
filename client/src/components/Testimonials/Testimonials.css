@@ -91,6 +91,10 @@
 
 /* ------------- RESPONSIVE ------------- */
 @media (max-width: 767px) {
+  .testimonials-videos {
+    width: 100%;
+    margin-bottom: 60px;
+  }
   .testimonios-cards {
     width: 100%;
     border-radius: 0;
