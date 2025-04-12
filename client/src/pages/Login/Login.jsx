@@ -70,7 +70,7 @@ const Login = () => {
                   <Button
                     variant="light"
                     className="w-100 mt-3 custom-btn-google"
-                    onClick={() => (window.location.href = "/api/sessions/google")}
+                    onClick={() => (window.location.href = "https://laplatapavenezuela.com/api/sessions/google")}
                   >
                     <img
                       src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
