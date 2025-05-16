@@ -2,7 +2,7 @@ import "./Servicios.css";
 
 const Servicios = () => {
     return (
-        <div className="servicios-section">
+        <div className="servicios-section" id="quienes-somos">
             <div className="servicios left">
                 <h2>NUESTRO SERVICIO SE BASA EN:</h2>
                 <div>

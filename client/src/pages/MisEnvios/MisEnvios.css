@@ -1,26 +1,275 @@
-/* Contenedor principal de la página de seguimiento */
-.seguimiento-container {
-  padding: 20px;
-  background-color: #f4f4f4;
+/* Variables de color */
+:root {
+  --primary-color: #39afc1;
+  --primary-dark: #2d8a99;
+  --primary-light: #5ec9d8;
+  --text-color: #333333;
+  --light-gray: #f5f5f5;
+  --medium-gray: #e0e0e0;
+  --dark-gray: #666666;
+  --error-color: #e53935;
+  --success-color: #43a047;
+  --white: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos generales */
+.envios-container {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  background-color: var(--light-gray);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+}
+
+/* Cabecera */
+.envios-header {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.envios-header::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.envios-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.envios-header p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.icon-container svg {
+  width: 40px;
+  height: 40px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Contenido principal */
+.envios-content {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Tarjeta de enviar dinero */
+.send-money-card {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 24px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 30px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
 }
 
-/* Título principal */
-.seguimiento-container h4 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #0033ab;
-  margin-bottom: 30px;
+.send-money-card:hover,
+.card-hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-dark);
+}
+
+.send-money-icon {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.send-money-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.send-money-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Efecto de brillo en la tarjeta */
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.7s;
+}
+
+.send-money-card:hover .card-shine {
+  left: 100%;
+}
+
+/* Sección de órdenes */
+.orders-section {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.orders-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+/* Estado de carga */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(57, 175, 193, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-container p {
+  color: var(--dark-gray);
+  font-size: 14px;
+}
+
+/* Estado vacío */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
   text-align: center;
 }
 
-/* Estilo de texto para el estado de carga */
-.loading {
-  font-size: 1.2rem;
-  color: #666;
-  text-align: center;
-  margin-top: 20px;
+.empty-state svg {
+  color: var(--medium-gray);
+  margin-bottom: 16px;
+}
+
+.empty-state p {
+  color: var(--dark-gray);
+  margin-bottom: 16px;
+}
+
+.create-order-button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-order-button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Mensaje de error */
+.error-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: rgba(229, 57, 53, 0.1);
+  color: var(--error-color);
+}
+
+.error-message svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .envios-content {
+    padding: 16px;
+  }
+  
+  .send-money-card {
+    padding: 16px;
+  }
+  
+  .orders-section {
+    padding: 16px;
+  }
 }

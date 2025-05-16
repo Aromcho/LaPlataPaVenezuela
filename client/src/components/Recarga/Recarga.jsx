@@ -3,7 +3,7 @@ import './Recarga.css';
 
 const Recarga = () => {
     return (
-        <div className="recarga-section">
+        <div className="recarga-section" id="servicios">
             <h3>Recarga y cambia al instante</h3>
             <div className="metodos-container">
                 {/* Contenedor de los métodos alineados arriba */}

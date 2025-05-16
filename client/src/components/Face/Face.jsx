@@ -42,7 +42,7 @@ const Face = () => {
 
       <main>
         <section
-          id="quienes-somos"
+          
           className="quienes-somos-section"
           style={{
             backgroundImage: `url("./img/paisaje.png")`,

@@ -1,17 +1,198 @@
+:root {
+  --primary-color: #39afc1;
+  --primary-dark: #2d8a99;
+  --primary-light: #5ec9d8;
+  --text-color: #333333;
+  --light-gray: #f5f5f5;
+  --medium-gray: #e0e0e0;
+  --dark-gray: #666666;
+  --error-color: #e53935;
+  --success-color: #43a047;
+  --warning-color: #ff9800;
+  --white: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Lista de órdenes */
 .orders-list {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Separación entre las tarjetas */
+  gap: 16px;
+  width: 100%;
 }
 
-.send-money-card {
-  border: 2px solid #007bff; /* Borde destacado */
-  border-radius: 10px;
+/* Tarjeta de orden */
+.order-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--medium-gray);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.order-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Cabecera de la orden */
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: rgba(57, 175, 193, 0.05);
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.order-id {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.order-status {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.status-pending {
+  background-color: rgba(255, 152, 0, 0.1);
+  color: var(--warning-color);
+}
+
+.status-completed {
+  background-color: rgba(67, 160, 71, 0.1);
+  color: var(--success-color);
+}
+
+.status-cancelled {
+  background-color: rgba(229, 57, 53, 0.1);
+  color: var(--error-color);
+}
+
+.status-default {
+  background-color: rgba(102, 102, 102, 0.1);
+  color: var(--dark-gray);
+}
+
+/* Detalles de la orden */
+.order-details {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 12px;
+  color: var(--dark-gray);
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* Montos */
+.order-amount {
+  display: flex;
+  align-items: center;
+}
+
+.amount-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amount-sent,
+.amount-received {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.amount-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.amount-currency {
+  font-size: 12px;
+  color: var(--primary-color);
+  background-color: rgba(57, 175, 193, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.amount-arrow {
+  color: var(--dark-gray);
+  margin: 0 4px;
+}
+
+/* Acciones */
+.order-actions {
+  padding: 12px 16px;
+  border-top: 1px solid var(--medium-gray);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.2s;
+  border: none;
 }
 
-.send-money-card:hover {
-  transform: translateY(-5px); /* Efecto hover */
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Sombra en hover */
+.details-button {
+  background-color: rgba(57, 175, 193, 0.1);
+  color: var(--primary-color);
+}
+
+.details-button:hover {
+  background-color: rgba(57, 175, 193, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .orders-list {
+    gap: 12px;
+  }
+
+  .order-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-amount {
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+  }
 }
